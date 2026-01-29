@@ -15,41 +15,251 @@
     </head>
 
 <body> 
-    <div class="particulas"></div>
-    <nav class="navegacao">
-        <ul class="menu">
-            <li>
-                <a href="#inicio" class="menu-link">Inicio</a>
-            </li>
-            <li>
-                <a href="#sobre" class="menu-link">Sobre</a>
-            </li>
-            <li>
-                <a href="#projetos" class="menu-link">Equipe</a>    
-            </li>
-            <li>
-                <a href="#solucoes" class="menu-link">Soluções</a>
-            </li>
-            <li>
-                <a href="#pesquisas" class="menu-link">Pesquisas</a>
-            </li>
-            <li>
-                <a href="Cases" class="menu-link">Cases</a>
-            </li>
-            <li>
-                <a href="#contatos" class="menu-link">contato</a> 
-            </li>
-        </ul>
-        <div class="link-contact">
+    <nav id="navbar">
+        <div class="logo">
+            <img src="./imagens/logo.png" alt="GaiaColibris Logo"> <!-- Insira o caminho correto para o logo -->
+        </div>
+        
+        <div class="link-section">
             <ul>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/sônia-pedrêira-cerquêira-ph-d-pmp-93361826/"
-                  title="Access LinkedIn"
-                  ><i class="fa-brands fa-linkedin-in"></i
-                ></a>
-              </li>
-              <li>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#skills">Equipe</a></li>
+                <li><a href="#projects">Soluções</a></li>
+                <li><a href="#search">Pesquisas</a></li>
+                <li><a href="#cases">Cases</a></li>
+                <li><a href="#contact">Contatos</a></li>
+            </ul>
+        </div>
+            <div class="link-contact">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/sônia-pedrêira-cerquêira-ph-d-pmp-93361826/"title="Access LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </li>
+                </ul>    
     </nav>
-</body>
+        <header id="home">
+            <div class="hero">
+                <div class="hero-text">
+                    <p class="hero-kicker">Consultoria em Desenvolvimento Humano & Liderança</p>
+                    <h1>Desenvolvemos líderes e equipes para resultados sustentáveis.</h1>
+                    <p class="hero-subtitle">
+                        Apoiamos empresas em processos de transformação cultural, liderança e engajamento,
+                        com programas sob medida para contextos complexos e globais.
+                    </p>
+    
+                    <div class="hero-actions">
+                        <a href="#contact" class="hero-cta-main">
+                            <span>Falar com a Gaia Colibri</span>
+                            <span class="hero-cta-arrow">→</span>
+                        </a>
+
+                        <a href="#projects" class="hero-cta-link">
+                            Conhecer soluções
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- PLACEHOLDER DO VÍDEO (depois troca por iframe) -->
+                <button class="hero-video-card" type="button">
+                    <div class="hero-video-thumb">
+                        <!-- você pode colocar aqui uma imagem estática -->
+                        <!-- <img src="./imagens/hero-video.jpg" alt="Apresentação Gaia Colibri"> -->
+                    </div>
+                    <div class="hero-video-info">
+                        <span class="hero-video-label">Vídeo institucional</span>
+                        <strong>Em breve: apresentação da Gaia Colibri</strong>
+                        <span class="hero-video-hint">Clique para assistir assim que o vídeo estiver disponível</span>
+                    </div>
+                    <div class="hero-video-play">
+                        <span>▶</span>
+                    </div>
+                </button>
+            </div>
+        </header>
+            <section id="about" class="section section-about">
+                <div class="section-inner section-about-centered">
+                    <h2>Gaia Colibri</h2 class="titulo1">
+        
+                    <!-- texto centralizado, estilo Plano -->
+                    <p class="about-intro">
+                        A Gaia Colibri é uma consultoria especializada em desenvolvimento humano, liderança e cultura organizacional.
+                    </p>
+                    <p class="about-intro">
+                        Nosso propósito é transformar ambientes de trabalho por meio de relações humanas autênticas,
+                        promovendo confiança, colaboração e resultados sustentáveis.
+                    </p>
+                    <p class="about-intro">
+                        Não entregamos apenas treinamentos. Entregamos transformação, atuando na essência do ser humano:
+                        na forma de liderar, se comunicar e criar ambientes seguros e prósperos.
+                    </p>
+        
+                    <!-- frase / filosofia em destaque -->
+                    <div class="about-quote">
+                        <p>
+                            O mundo muda quando as pessoas mudam. E as pessoas mudam através do conhecimento.
+                        </p>
+                    </div>
+        
+                    <!-- FOCOS DE DESENVOLVIMENTO COM ÍCONES -->
+                    <div class="about-focus-grid">
+                        <article class="focus-item">
+                            <div class="focus-icon">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <h3>Desenvolvimento Humano</h3>
+                            <p>
+                                Programas que fortalecem competências socioemocionais e ampliam a consciência de si e do outro.
+                            </p>
+                        </article>
+        
+                        <article class="focus-item">
+                            <div class="focus-icon">
+                                <i class="bi bi-person-badge-fill"></i>
+                            </div>
+                            <h3>Liderança</h3>
+                            <p>
+                                Formações para líderes que conduzem times em ambientes complexos e em constante mudança.
+                            </p>
+                        </article>
+        
+                        <article class="focus-item">
+                            <div class="focus-icon">
+                                <i class="bi bi-building-check"></i>
+                            </div>
+                            <h3>Cultura Organizacional</h3>
+                            <p>
+                                Projetos que alinham propósito, estratégia e comportamento, sustentando a mudança no longo prazo.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section id="projects" class="section section-solutions">
+                    <div class="section-inner">
+                        <h2>Nossas Soluções</h2>
+                        <p class="section-subtitle">
+                            Programas estruturados para desenvolvimento contínuo de competências, liderança e cultura.
+                        </p>
+            
+                        <div class="section-cards-wrapper">
+                            <div class="cards-grid">
+                                <article class="info-card">
+                                    <h3>Programas de Treinamento</h3>
+                                    <p>
+                                        Jornadas completas de desenvolvimento com trilhas modulares, workshops e acompanhamento.
+                                    </p>
+                                    <a href="#contact" class="card-button">Saiba Mais</a>
+                                </article>
+                
+                                <article class="info-card">
+                                    <h3>Workshops</h3>
+                                    <p>
+                                        Sessões dinâmicas e práticas, focadas em temas específicos para resultados rápidos.
+                                    </p>
+                                    <a href="#contact" class="card-button">Saiba Mais</a>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--pesquisas-->
+                    <section id="search" class="section section-research">
+                        <div class="section-inner">
+                            <h2>Pesquisas</h2>
+                            <p class="section-subtitle">
+                                Dados e diagnósticos precisos para embasar suas decisões estratégicas.
+                            </p>
+                
+                            <div class="section-cards-wrapper">
+                                <div class="cards-grid">
+                                    <article class="info-card">
+                                        <h3>Mapeamento de Liderança Natural</h3>
+                                        <p>
+                                            Identificamos os líderes informais que influenciam a cultura da sua empresa,
+                                            fortalecendo confiança e engajamento.
+                                        </p>
+                                        <a href="#contact" class="card-button">Saiba Mais</a>
+                                    </article>
+                    
+                                    <article class="info-card">
+                                        <h3>Pesquisa de Clima</h3>
+                                        <p>
+                                            Diagnóstico profundo de satisfação, engajamento e percepção dos colaboradores,
+                                            apontando caminhos de melhoria.
+                                        </p>
+                                        <a href="#contact" class="card-button">Saiba Mais</a>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                <!-- Seção “Equipe Gaia”-->
+                    <section id="skills" class="section section-team">
+                        <div class="section-inner">
+                            <h2>Equipe Gaia</h2>
+                            <p class="section-subtitle">
+                                Nossa equipe é formada por especialistas dedicados a transformar ambientes de trabalho.
+                            </p>
+                
+                            <div class="team-grid">
+                                <article class="team-card team-card-featured">
+                                    <div class="team-photo">
+                                        <!-- troque pela foto real -->
+                                        <img src="./imagens/sonia.png" alt="Sonia Cerqueira">
+                                    </div>
+                                    <h3>Sonia Cerqueira</h3>
+                                    <p class="team-role">Fundadora &amp; Consultora Principal</p>
+                                    <a href="#" class="card-button-outline">Ver Currículo</a>
+                                </article>
+                
+                                <article class="team-card">
+                                    <div class="team-photo team-photo-placeholder"></div>
+                                    <h3>Roseli</h3>
+                                    <p class="team-role">Especialista Gaia</p>
+                                    <a href="#" class="card-button-outline">Ver Currículo</a>
+                                </article>
+                
+                                <article class="team-card">
+                                    <div class="team-photo team-photo-placeholder"></div>
+                                    <h3>Renata</h3>
+                                    <p class="team-role">Especialista Gaia</p>
+                                    <a href="#" class="card-button-outline">Ver Currículo</a>
+                                </article>
+                            </div>
+                        </div>
+            </section>
+            <!--CTA final / Contato-->
+
+            <section id="contact" class="section section-contact">
+                    <div class="section-inner contact-layout">
+                        <div>
+                            <h2>Agende uma conversa</h2>
+                            <p class="section-subtitle">
+                                Conte-nos sobre os desafios da sua organização. Vamos construir juntos uma solução sob medida.
+                            </p>
+                            <ul class="contact-info">
+                                <li><strong>E-mail:</strong> contato@gaiacolibri.com</li>
+                                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/..." target="_blank">Perfil Gaia Colibri</a></li>
+                            </ul>
+                        </div>
+            
+                        <form class="contact-form">
+                            <div class="form-row">
+                                <input type="text" name="nome" placeholder="Nome da empresa" required>
+                            </div>
+                            <div class="form-row">
+                                <input type="email" name="email" placeholder="E-mail corporativo" required>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="cargo" placeholder="Seu cargo">
+                            </div>
+                            <div class="form-row">
+                                <textarea name="mensagem" rows="4" placeholder="Conte brevemente o contexto e os desafios atuais"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Enviar mensagem</button>
+                        </form>
+                    </div>
+                </section>
+            
+    </body>
 </html>
