@@ -450,20 +450,26 @@ color: #6b7280;
 /* ABOUT centralizado, estilo Plano */
 
 .section-about-centered {
-  max-width: 900px;
+  font-family: 'Playfair Display', serif;
+  max-width: 2000px;
   text-align: center;
+  font-size: 30px;
 }
 
 .section-about-centered h2 {
-  font-size: 28px;
-  margin-bottom: 16px;
+  font-size: 70px;
+  margin-bottom: 40px;
   color: var(--texto-principal);
+  font-family: "Lobster Two", sans-serif;
 }
 /* parágrafos centrais */
 .about-intro {
-  font-size: 14px;
+  font-size: 20px;
   color: var(--texto-secundario);
-  margin-bottom: 8px;
+  margin-bottom: 18px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* box com filosofia em destaque */
@@ -487,17 +493,19 @@ color: #6b7280;
 .about-focus-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px;
-  margin-top: 8px;
+  gap: 5px;
+  margin-top: 100px;
+  
 }
 
 .focus-item {
   text-align: center;
+
 }
 
 .focus-icon {
-  width: 80px;
-  height: 80px;
+  width: 115px;
+  height: 115px;
   border-radius: 999px;
   border: 1px solid rgba(224, 226, 217, 0.9);
   display: flex;
@@ -509,15 +517,16 @@ color: #6b7280;
   background: var(--primaria-escuro); /* bolinha verde-oliva escuro */
 }
 
-.focus-item h3 {
-  font-size: 15px;
+.focus-item h3 { /* título do foco */
+  font-size: 26px;
   color: var(--texto-principal);
-  margin-bottom: 6px;
+  margin-bottom: 21px;
 }
 
-.focus-item p {
-  font-size: 13px;
+.focus-item p { /* descrição do foco */
+  font-size: 16px;
   color: var(--texto-secundario);
+  font-family: "Inter", sans-serif;
 }
 
 /* responsivo */
@@ -699,6 +708,7 @@ align-items: flex-start;
 }
 
 .contact-info {
+
 list-style: none;
 margin: 16px 0 0 0;
 padding: 0;
@@ -796,3 +806,8 @@ grid-template-columns: 1fr;
     padding: 32px 28px;
     box-shadow: 0 30px 80px rgba(15, 23, 42, 0.06);
   }
+
+.section-inner {
+  margin-bottom: 20px;
+
+}  
