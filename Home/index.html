@@ -81,24 +81,24 @@
         </header>
             <section id="about" class="section section-about">
                 <div class="section-inner section-about-centered">
-                    <h2>Gaia Colibri</h2 class="titulo1">
+                    <h2 class="reveal">  Gaia Colibri</h2 class="titulo1">
         
                     <!-- texto centralizado, estilo Plano -->
-                    <p class="about-intro">
+                    <p class="about-intro reveal">
                         A Gaia Colibri é uma consultoria especializada em <strong>desenvolvimento humano</strong>,<strong>liderança e cultura organizacional</strong>.
                     </p>
-                    <p class="about-intro">
+                    <p class="about-intro reveal">
                         Nosso propósito é transformar ambientes de trabalho por meio de relações humanas autênticas,
                         promovendo confiança, colaboração e resultados sustentáveis.
                     </p>
-                    <p class="about-intro">
+                    <p class="about-intro reveal">
                         Não entregamos apenas treinamentos. Entregamos transformação, atuando na essência do ser humano:
                         na forma de liderar, se comunicar e criar ambientes seguros e prósperos.
                     </p>
                 
                     <!-- frase / filosofia em destaque -->
                  
-                    <div class="about-quote">
+                    <div class="about-quote reveal">
                         <p>
                             O mundo muda quando as pessoas mudam. E as pessoas mudam através do conhecimento.
                         </p>
@@ -106,7 +106,7 @@
         
                     <!-- FOCOS DE DESENVOLVIMENTO COM ÍCONES -->
                     <div class="about-focus-grid">
-                        <article class="focus-item">
+                        <article class="focus-item reveal reveal-right "> <!-- adicionar animação reveal-right -->
                             <div class="focus-icon">
                                 <i class="bi bi-people-fill"></i>
                             </div>
@@ -116,7 +116,7 @@
                             </p>
                         </article>
         
-                        <article class="focus-item">
+                        <article class="focus-item reveal reveal-right">
                             <div class="focus-icon">
                                 <i class="bi bi-person-badge-fill"></i>
                             </div>
@@ -126,7 +126,7 @@
                             </p>
                         </article>
         
-                        <article class="focus-item">
+                        <article class="focus-item reveal reveal-right">
                             <div class="focus-icon">
                                 <i class="bi bi-building-check"></i>
                             </div>
@@ -200,12 +200,12 @@
                 <!-- Seção “Equipe Gaia”-->
                     <section id="skills" class="section section-team">
                         <div class="section-inner">
-                            <h2>Equipe Gaia</h2>
-                            <p class="section-subtitle">
+                            <h2 class="reveal"> Equipe Gaia</h2>
+                            <p class="section-subtitle reveal">
                                 Nossa equipe é formada por especialistas dedicados a transformar ambientes de trabalho.
                             </p>
                 
-                            <div class="team-grid">
+                            <div class="team-grid reveal">
                                 <article class="team-card team-card-featured">
                                     <div class="team-photo">
                                         <!-- troque pela foto real -->
@@ -264,6 +264,19 @@
                         </form>
                     </div>
                 </section>
-            
+                <script>
+                    const reveals = document.querySelectorAll(".reveal");
+
+                    const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        }
+                    });
+                    });
+
+                reveals.forEach(el => observer.observe(el));
+                </script>                
+                <script src="script.js"></script>
     </body>
 </html>

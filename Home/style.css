@@ -163,34 +163,37 @@ display: block;
 max-width: 1200px;
 width: 100%;
 display: flex;
-gap: 48px;
+gap: 120px;
 align-items: center;
+margin-right: 120px;
 }
 
 .hero-text {
 flex: 1.1;
+
 }
 
 .hero-kicker {
 text-transform: uppercase;
 letter-spacing: 0.16em;
-font-size: 11px;
+font-size: 12px;
 color: #9ea4a8;
 margin-bottom: 8px;
 }
 
 .hero h1 {
-font-size: 38px;
+font-size: 50px;
 line-height: 1.2;
 color: #222;
-margin-bottom: 16px;
+margin-bottom: 30px;
+margin-top: 30px;
 }
 
 .hero-subtitle {
-font-size: 15px;
+font-size: 20px;
 color: var(--texto-secundario);
 max-width: 480px;
-margin-bottom: 24px;
+margin-bottom: 50px;
 }
 
 .hero-actions {
@@ -474,7 +477,7 @@ color: #6b7280;
 
 /* box com filosofia em destaque */
 .about-quote {
-  margin: 28px auto 36px auto;
+  margin: 80px auto 40px auto;
   max-width: 720px;
   padding: 16px 22px;
   border-left: 3px solid var(--primaria);
@@ -811,3 +814,29 @@ grid-template-columns: 1fr;
   margin-bottom: 20px;
 
 }  
+/* Animações de revelação ao rolar a página */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal:nth-child(1) { transition-delay: 0.1s; }
+.reveal:nth-child(2) { transition-delay: 0.2s; }
+.reveal:nth-child(3) { transition-delay: 0.3s; }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px); /* começa à direita */
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
