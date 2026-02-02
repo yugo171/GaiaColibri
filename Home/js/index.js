@@ -22,11 +22,17 @@ const revealElements = document.querySelectorAll(
 
 const revealOnScroll = () => {
   const windowHeight = window.innerHeight;
+  const offset = 120;
+
   revealElements.forEach((el) => {
     const rect = el.getBoundingClientRect();
-    const offset = 120;
-    if (rect.top < windowHeight - offset) {
+
+    // entra na tela → adiciona is-visible
+    if (rect.top < windowHeight - offset && rect.bottom > offset) {
       el.classList.add("is-visible");
+    } else {
+      // saiu da tela → remove is-visible
+      el.classList.remove("is-visible");
     }
   });
 };
