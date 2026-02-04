@@ -50,3 +50,91 @@ if (projectsContainer && left && right) {
     projectsContainer.scrollLeft -= window.innerWidth;
   });
 }
+// CARROSSEL DE CLIENTES – rolagem horizontal suave
+const clientsTrack = document.getElementById("clients-track");
+const clientsLeft = document.getElementById("clients-left");
+const clientsRight = document.getElementById("clients-right");
+
+if (clientsTrack && clientsLeft && clientsRight) {
+  const intervalMs = 5000;   // 5s entre auto-scrolls
+  let autoScrollId = null;
+
+  // passo de scroll: ~1 tela (largura visível)
+  const getStep = () => clientsTrack.clientWidth;
+
+  const scrollNext = () => {
+    const step = getStep();
+    const maxScrollLeft = clientsTrack.scrollWidth - clientsTrack.clientWidth;
+
+    // se estiver perto do fim, volta pro começo
+    if (clientsTrack.scrollLeft + step >= maxScrollLeft - 5) {
+      clientsTrack.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      clientsTrack.scrollBy({
+        left: step,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollPrev = () => {
+    const step = getStep();
+    const maxScrollLeft = clientsTrack.scrollWidth - clientsTrack.clientWidth;
+
+    if (clientsTrack.scrollLeft - step <= 0) {
+      clientsTrack.scrollTo({
+        left: maxScrollLeft,
+        behavior: "smooth",
+      });
+    } else {
+      clientsTrack.scrollBy({
+        left: -step,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // cliques nas setas
+  clientsRight.addEventListener("click", () => {
+    scrollNext();
+    restartAutoScroll();
+  });
+
+  clientsLeft.addEventListener("click", () => {
+    scrollPrev();
+    restartAutoScroll();
+  });
+
+  // auto–scroll a cada 5 segundos
+  const startAutoScroll = () => {
+    if (autoScrollId) return;
+    autoScrollId = setInterval(scrollNext, intervalMs);
+  };
+
+  const stopAutoScroll = () => {
+    if (!autoScrollId) return;
+    clearInterval(autoScrollId);
+    autoScrollId = null;
+  };
+
+  const restartAutoScroll = () => {
+    stopAutoScroll();
+    startAutoScroll();
+  };
+
+  // pausa quando o mouse entra, volta quando sai
+  clientsTrack.addEventListener("mouseenter", stopAutoScroll);
+  clientsTrack.addEventListener("mouseleave", startAutoScroll);
+
+  // se o tamanho da janela mudar, não precisa recalcular página, só mantém scroll
+  window.addEventListener("resize", () => {
+    // opcional: você pode ajustar algo aqui se quiser
+  });
+
+  // começa do início
+  clientsTrack.scrollLeft = 0;
+  startAutoScroll();
+}
