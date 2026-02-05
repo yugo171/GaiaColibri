@@ -36,10 +36,10 @@
             </ul>
         </div>
     </nav>
-        <header id="home">
-            <!--IMAGEM DE FUNDO-->
-
-            <!-- CONTEÚIDO POR CIMA DA IMAGEM -->
+        <header id="home">              
+            <div class="bg-carousel" aria-hidden="true">
+                <div class="bg-carousel-overlay"></div>
+            </div>
             <div class="hero reveal-right "> <!-- adicionar animação reveal-right -->
                 <div class="hero-text">
                     <p class="hero-kicker">Consultoria em Desenvolvimento Humano & Liderança</p>
@@ -80,65 +80,72 @@
         </header>
         <!--Clientes-->
         
-            <section id="about" class="section section-about">
-                <div class="section-inner section-about-centered">
-                    <h2 class="reveal">GAIA COLIBRI</h2>
-        
-                    <!-- texto centralizado, estilo Plano -->
-                    <p class="about-intro reveal">
-                        A Gaia Colibri é uma consultoria especializada em <strong>desenvolvimento humano</strong>,<strong>liderança e cultura organizacional</strong>.
-                    </p>
-                    <p class="about-intro reveal">
-                        Nosso propósito é transformar ambientes de trabalho por meio de relações humanas autênticas,
-                        promovendo confiança, colaboração e resultados sustentáveis.
-                    </p>
-                    <p class="about-intro reveal">
-                        Não entregamos apenas treinamentos. Entregamos transformação, atuando na essência do ser humano:
-                        na forma de liderar, se comunicar e criar ambientes seguros e prósperos.
-                    </p>
+        <section id="about" class="section section-about">
+            <div class="section-inner section-about-centered">
+              <div class="about-split">
                 
-                    <!-- frase / filosofia em destaque -->
-                 
-                    <div class="about-quote reveal">
-                        <p>
-                            O mundo muda quando as pessoas mudam. E as pessoas mudam através do conhecimento.
-                        </p>
-                    </div>
-        
-                    <!-- FOCOS DE DESENVOLVIMENTO COM ÍCONES -->
-                    <div class="about-focus-grid">
-                        <article class="focus-item reveal reveal-right "> <!-- adicionar animação reveal-right -->
-                            <div class="focus-icon">
-                                <i class="bi bi-people-fill"></i>
-                            </div>
-                            <h3>Desenvolvimento Humano</h3>
-                            <p>
-                                Programas que fortalecem competências socioemocionais e ampliam a consciência de si e do outro.
-                            </p>
-                        </article>
-        
-                        <article class="focus-item reveal reveal-right">
-                            <div class="focus-icon">
-                                <i class="bi bi-person-badge-fill"></i>
-                            </div>
-                            <h3>Liderança</h3>
-                            <p>
-                                Formações para líderes que conduzem times em ambientes complexos e em constante mudança.
-                            </p>
-                        </article>
-        
-                        <article class="focus-item reveal reveal-right">
-                            <div class="focus-icon">
-                                <i class="bi bi-building-check"></i>
-                            </div>
-                            <h3>Cultura Organizacional</h3>
-                            <p>
-                                Projetos que alinham propósito, estratégia e comportamento, sustentando a mudança no longo prazo.
-                            </p>
-                        </article>
-                    </div>
+                <!-- ESQUERDA: imagem -->
+                <div class="about-left reveal reveal-left">
+                    <img src="./imagens/abt.png" alt="Sobre a Gaia Colibri" class="about-image">
+                  </div>
+          
+                <!-- DIREITA: mantém TODO o seu conteúdo/ícones -->
+                <div class="about-right">
+                  <img src="./imagens/logo.png" alt="GAIA COLIBRI" class="about-logo reveal">
+          
+                  <p class="about-intro reveal">
+                    A Gaia Colibri é uma consultoria especializada em <strong>desenvolvimento humano</strong>,<strong>liderança e cultura organizacional</strong>.
+                  </p>
+                  <p class="about-intro reveal">
+                    Nosso propósito é transformar ambientes de trabalho por meio de relações humanas autênticas,
+                    promovendo confiança, colaboração e resultados sustentáveis.
+                  </p>
+                  <p class="about-intro reveal">
+                    Não entregamos apenas treinamentos. Entregamos transformação, atuando na essência do ser humano:
+                    na forma de liderar, se comunicar e criar ambientes seguros e prósperos.
+                  </p>
+          
+                  <div class="about-quote reveal">
+                    <p>
+                      O mundo muda quando as pessoas mudam. E as pessoas mudam através do conhecimento.
+                    </p>
+                  </div>
+          
+                  <div class="about-focus-grid">
+                    <article class="focus-item reveal reveal-right">
+                      <div class="focus-icon">
+                        <i class="bi bi-people-fill"></i>
+                      </div>
+                      <h3>Desenvolvimento Humano</h3>
+                      <p>
+                        Programas que fortalecem competências socioemocionais e ampliam a consciência de si e do outro.
+                      </p>
+                    </article>
+          
+                    <article class="focus-item reveal reveal-right">
+                      <div class="focus-icon">
+                        <i class="bi bi-person-badge-fill"></i>
+                      </div>
+                      <h3>Liderança</h3>
+                      <p>
+                        Formações para líderes que conduzem times em ambientes complexos e em constante mudança.
+                      </p>
+                    </article>
+          
+                    <article class="focus-item reveal reveal-right">
+                      <div class="focus-icon">
+                        <i class="bi bi-building-check"></i>
+                      </div>
+                      <h3>Cultura Organizacional</h3>
+                      <p>
+                        Projetos que alinham propósito, estratégia e comportamento, sustentando a mudança no longo prazo.
+                      </p>
+                    </article>
+                  </div>
                 </div>
-            </section>
+              </div>
+            </div>
+          </section>
             <section id="clients" class="section section-clients">
                 <div class="section-inner company-logos">
                   <h2>Conheça algumas empresas que confiam na Gaia Colibri</h2>

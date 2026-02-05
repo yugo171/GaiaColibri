@@ -138,3 +138,14 @@ if (clientsTrack && clientsLeft && clientsRight) {
   clientsTrack.scrollLeft = 0;
   startAutoScroll();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const bg = document.querySelector("#home .bg-carousel");
+  if (bg && !bg.querySelector(".slide-3")) {
+    ["slide-3", "slide-4", "slide-5"].forEach(cls => {
+      const el = document.createElement("div");
+      el.className = cls;
+      bg.appendChild(el);
+    });
+  }
+});

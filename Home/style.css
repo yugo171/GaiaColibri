@@ -58,28 +58,29 @@
 /*NAVBAR*/
 #navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 12px 50px;
-  height: 70px;                    /* define uma altura clara */
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  height: 70px;
+  background-color: transparent;          /* transparente por padrão */
+  backdrop-filter: blur(2px);             /* leve blur opcional */
+  box-shadow: none;                       /* sem sombra no topo */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #navbar.navbar-scrolled {
-    background-color: var(--primaria-escuro);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 10px 30px rgba(10, 12, 10, 0.7);
-  }
+  background-color: rgba(47, 58, 47, 0.95);   /* verde-oliva escuro */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(10, 12, 10, 0.7);
+}
   
-#navbar.navbar-scrolled ul li a {
-    color: #f9fafb;
+#navbar ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.25s ease;
 }
 #navbar ul {
   display: flex;
@@ -88,13 +89,9 @@
   font-size: 20px;
 }
 
-#navbar ul li a {
-    text-decoration: none;
-    color: var(--texto-principal);
-    font-size: 15px;
-    font-weight: 500;
-    transition: color 0.25s ease, transform 0.25s ease;
-  }
+#navbar ul li a:hover {
+  color: var(--primaria-claro);
+}
 
   #navbar ul li a:hover {
     color: var(--primaria);
@@ -108,10 +105,11 @@
     display: flex;
     align-items: center;
   }
-.logo img {
-  height: 50px;   /* ajuste o tamanho se quiser */
-  width: auto;
-}
+  .logo img {
+    height: 50px;
+    width: auto;
+    filter: brightness(10);       /* deixa a logo branca; remova se a logo já for clara */
+  }
 
 .link-section {
   flex: 1;                     /* ocupa o espaço central */
@@ -140,12 +138,64 @@ display: inline-block;
 /* HEADER COM VÍDEO */
 #home {
   position: relative;
-  margin-top: 70px;   /* MESMO valor da altura do navbar */
-  min-height: 80vh;
-  overflow: hidden;   /* só para imagem de fundo, não cria segunda rolagem */
+  margin-top: 0;                /* era 70px — agora cola no topo */
+  padding-top: 70px;            /* compensa a altura do navbar fixo */
+  min-height: 90vh;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
+
+/* Carrossel de fundo (apenas dentro do header) */
+.bg-carousel {
+  position: absolute;
+  left: 0; right: 0;
+  top: -70px;                   /* sobe para cobrir atrás do navbar */
+  height: calc(100% + 70px);    /* header + navbar */
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Camadas das imagens (5) com crossfade */
+.bg-carousel::before,
+.bg-carousel::after,
+.bg-carousel .slide-3,
+.bg-carousel .slide-4,
+.bg-carousel .slide-5 {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center 30%;    /* mostra mais o topo da imagem */
+  opacity: 0;
+  animation: bgFade 25s infinite;
+}
+
+.bg-carousel::before { background-image: url("./imagens/1.jpg"); animation-delay: 0s; }
+.bg-carousel::after  { background-image: url("./imagens/2.jpg"); animation-delay: 5s; }
+.bg-carousel .slide-3 { background-image:url("./imagens/3.jpg"); animation-delay: 10s; }
+.bg-carousel .slide-4 { background-image:url("./imagens/4.jpg"); animation-delay: 15s; }
+.bg-carousel .slide-5 { background-image:url("./imagens/5.jpg"); animation-delay: 20s; }
+
+/* Crossfade suave entre as imagens */
+@keyframes bgFade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }
+  20%  { opacity: 1; }
+  24%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+.bg-carousel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.45);        /* ajuste a opacidade aqui: 0.3 = leve, 0.6 = bem escuro */
+  pointer-events: none;
+}
+
+/* Conteúdo do header acima do fundo */
+
 
 .hero-video-wrapper {
 width: 100%;
@@ -181,7 +231,7 @@ display: flex;
 gap: 120px;
 align-items: center;
 margin-right: 120px;
-margin-top: 50px;
+margin-top: 0;
 margin-left: 80px;
 }
 
@@ -190,28 +240,31 @@ flex: 1.1;
 
 }
 
-.hero-kicker  {
-text-transform: uppercase;
-letter-spacing: 0.16em;
-font-size: 12px;
-color: #9ea4a8;
-margin-bottom: 8px;
+.hero-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
 }
 
 .hero h1 {
-font-size: 50px;
-line-height: 1.2;
-color: #222;
-margin-bottom: 30px;
-margin-top: 30px;
+  font-size: 50px;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
-font-size: 20px;
-color: var(--texto-secundario);
-max-width: 480px;
-margin-bottom: 50px;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 480px;
+  margin-bottom: 50px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
+
 
 .hero-actions {
   display: flex;
@@ -380,6 +433,12 @@ color: #fff;
 max-width: 1100px;
 margin: 0 auto;
 }
+.section-inner.section-about-centered {
+  max-width: 1120px;           /* “container” mais elegante */
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
 
 .section h2 {
     text-align: center;
@@ -404,6 +463,13 @@ margin: 0 auto;
 }
 
 /* ABOUT */
+.about-logo {
+  display: block;
+  margin: 40px auto 60px auto;
+  height: 120px;               /* ajuste o tamanho aqui */
+  width: auto;
+  object-fit: contain;
+}
 
 .about-grid {
 display: grid;
@@ -469,16 +535,60 @@ color: #6b7280;
 /* ABOUT centralizado, estilo Plano */
 
 .section-about-centered {
-  font-family: 'Playfair Display', serif;
-  max-width: 2000px;
-  text-align: center;
-  font-size: 30px;
+  max-width: 1200px;
+  text-align: left; /* deixa o texto alinhado melhor na coluna direita */
 }
 
+.about-split {
+  display: grid;
+  grid-template-columns: 380px 1fr;  /* imagem fixa menor + texto */
+  gap: 56px;                          /* era grande demais */
+  align-items: start;
+}
+
+/* Imagem esquerda */
+.about-left {
+  position: sticky;     /* dá sensação de “puxar”/acompanhar (opcional e bonito) */
+  top: 110px;           /* abaixo do navbar */
+  align-self: start;
+}
+
+.about-image {
+  width: 100%;
+  height: 520px;               /* altura controlada (harmoniza) */
+  object-fit: cover;           /* corta elegante */
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14);
+}
+.about-right .about-logo,
+.about-logo {
+  height: 64px;                /* diminui a logo */
+  margin: 0 0 18px 0;
+}
+
+/* Coluna direita: preserva seus estilos existentes */
+.about-right .about-logo {
+  margin: 0 0 28px 0;
+}
+
+/* “Efeito vídeo”: slide-in lateral */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-70px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.section-about {
+  padding: 70px 0; /* menos espaço vertical */
+}
 .section-about-centered h2 {
   font-size: 70px;
   margin-bottom: 60px;
-  margin-top: 120px;
+  margin-top: 40px;
   color: var(--texto-principal);
   font-family: "Roboto Condensed", sans-serif;
 }
@@ -489,78 +599,98 @@ color: #6b7280;
 }
 /* parágrafos centrais */
 .about-intro {
-  font-size: 23px;
-  color: var(--texto-secundario);
-  margin-bottom: 20px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 18px;             /* reduz */
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: 0 0 14px 0;
+  color: #3d4a57;              /* mais suave */
 }
 
 /* box com filosofia em destaque */
 .about-quote {
-  margin: 120px auto 60px auto;
-  max-width: 720px;
-  padding: 16px 22px;
-  border-left: 3px solid var(--primaria);
-  background: #eef0e7;
+  margin: 18px 0 26px 0;
+  padding: 14px 16px;
+  border-left: 4px solid rgba(15, 118, 110, 0.35);
+  background: rgba(15, 118, 110, 0.06);
   border-radius: 12px;
 }
 
 .about-quote p {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--primaria);
   margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.7);
 }
 
 /* grid de focos (ícones redondos) */
 .about-focus-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 5px;
-  margin-top: 130px;
-  
+  gap: 22px;
+  margin-top: 28px;
 }
 
 .focus-item {
-  text-align: center;
-
+  padding: 18px 18px 16px 18px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
 }
+
 
 .focus-icon {
-  width: 110px;
-  height: 110px;
+  width: 44px;
+  height: 44px;
   border-radius: 999px;
-  border: 1px solid rgba(224, 226, 217, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 14px auto;
-  font-size: 34px;
-  color: #ffffff;
-  background: var(--primaria-escuro); /* bolinha verde-oliva escuro */
+  display: grid;
+  place-items: center;
+  background: rgba(15, 118, 110, 0.12);
+  margin-bottom: 10px;
 }
 
-.focus-item h3 { /* título do foco */
-  font-size: 26px;
-  color: var(--texto-principal);
-  margin-bottom: 21px;
+.focus-icon i {
+  font-size: 20px;             /* ícone menor */
+  color: #0f766e;
 }
 
-.focus-item p { /* descrição do foco */
-  font-size: 15px;
-  color: var(--texto-secundario);
-  font-family: "Inter", sans-serif;
+.focus-item h3 {
+  font-size: 16px;
+  margin: 0 0 8px 0;
 }
 
+.focus-item p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.75);
+}
 /* responsivo */
-@media (max-width: 960px) {
+@media (max-width: 980px) {
+  .about-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .about-image {
+    height: 340px;
+  }
+  .about-right .about-logo {
+    margin: 10px auto 16px auto;
+    display: block;
+  }
+  .about-intro {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about-focus-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
   .about-focus-grid {
     grid-template-columns: 1fr;
   }
 }
-
 /* CARDS (soluções / pesquisas) */
 
 .cards-grid {
@@ -982,3 +1112,5 @@ grid-template-columns: 1fr;
 .clients-track .client-logo:nth-child(7) { animation-delay: -7.8s; }
 .clients-track .client-logo:nth-child(8) { animation-delay: -9.1s; }
 .clients-track .client-logo:nth-child(9) { animation-delay: -10.4s; }
+
+/* FIM DO CSS HOME */
