@@ -260,38 +260,67 @@
                             </div>
                         </div>
             </section>
-            <!--CTA final / Contato-->
+    
+          
+    <section id="contact" class="section section-contact">
+        <div class="section-inner">
+            <!-- COLUNA ESQUERDA -->
+            <div class="match-conversation">  
+                <h2>Agende uma conversa!</h2>
 
-            <section id="contact" class="section section-contact">
-                    <div class="section-inner contact-layout">
-                        <div>
-                            <h2>Agende uma conversa</h2>
-                            <p class="section-subtitle">
-                                Conte-nos sobre os desafios da sua organização. Vamos construir juntos uma solução sob medida.
-                            </p>
-                            <ul class="contact-info">
-                                <li><strong>E-mail:</strong> contato@gaiacolibri.com</li>
-                                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/..." target="_blank">Perfil Gaia Colibri</a></li>
-                            </ul>
-                        </div>
+                <p class="section-subtitle">
+                    Conte-nos sobre os desafios da sua organização. Vamos construir juntos uma solução sob medida.
+                </p>
+            </div>  
             
-                        <form class="contact-form">
-                            <div class="form-row">
-                                <input type="text" name="nome" placeholder="Nome da empresa" required>
-                            </div>
-                            <div class="form-row">
-                                <input type="email" name="email" placeholder="E-mail corporativo" required>
-                            </div>
-                            <div class="form-row">
-                                <input type="text" name="cargo" placeholder="Seu cargo">
-                            </div>
-                            <div class="form-row">
-                                <textarea name="mensagem" rows="4" placeholder="Conte brevemente o contexto e os desafios atuais"></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary">Enviar mensagem</button>
-                        </form>
+            <div class="contact-layout">
+
+                <ul class="contact-info">
+                        <li>
+                            <a href="mailto:contato@gaiacolibri.com" class="contact-item">
+                                <span class="contact-icon">✉</span>
+                                <div class="contact-text">
+                                <strong>E-mail</strong>
+                                <span>contato@gaiacolibri.com</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.linkedin.com/..." target="_blank" class="contact-item">
+                                <span class="contact-icon">in</span>
+                                <div class="contact-text">
+                                <strong>LinkedIn</strong>
+                                <span>Perfil Gaia Colibri</span>
+                                </div>
+                            </a>
+                        </li>
+                </ul>
+            
+
+                <!-- COLUNA DIREITA -->
+                <form class="contact-form">
+                    <div class="form-row">
+                        <input type="text" name="nome" placeholder="Nome da empresa" required>
                     </div>
-                </section>
+
+                    <div class="form-row">
+                        <input type="email" name="email" placeholder="E-mail corporativo" required>
+                    </div>
+
+                    <div class="form-row">
+                        <input type="text" name="cargo" placeholder="Seu cargo">
+                    </div>
+
+                    <div class="form-row">
+                        <textarea name="mensagem" rows="4" placeholder="Conte brevemente o contexto e os desafios atuais"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Enviar mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
                 <script>
                     const reveals = document.querySelectorAll(".reveal");
 
