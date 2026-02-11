@@ -59,14 +59,22 @@
 #navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 20;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 50px;
-  height: 70px;
-  background-color: transparent;          /* transparente por padrão */
-  backdrop-filter: blur(2px);             /* leve blur opcional */
-  box-shadow: none;                       /* sem sombra no topo */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 50;
+
+  height: 76px;
+  padding: 0 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(10, 12, 10, 0.18);  /* vidro no topo */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  transition: background-color 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 #navbar.navbar-scrolled {
@@ -147,6 +155,9 @@ display: inline-block;
 }
 
 /* Carrossel de fundo (apenas dentro do header) */
+/* ...existing code... */
+
+/* Carrossel de fundo (apenas dentro do header) */
 .bg-carousel {
   position: absolute;
   left: 0; right: 0;
@@ -155,44 +166,25 @@ display: inline-block;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-}
 
-/* Camadas das imagens (5) com crossfade */
-.bg-carousel::before,
-.bg-carousel::after,
-.bg-carousel .slide-3,
-.bg-carousel .slide-4,
-.bg-carousel .slide-5 {
+  /* NOVO: imagem única */
+  background-image: url("./imagens/camp.jpg");
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+.bg-carousel::after {
   content: "";
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-size: cover;
-  background-position: center 30%;    /* mostra mais o topo da imagem */
-  opacity: 0;
-  animation: bgFade 25s infinite;
-}
-
-.bg-carousel::before { background-image: url("./imagens/1.jpg"); animation-delay: 0s; }
-.bg-carousel::after  { background-image: url("./imagens/2.jpg"); animation-delay: 5s; }
-.bg-carousel .slide-3 { background-image:url("./imagens/3.jpg"); animation-delay: 10s; }
-.bg-carousel .slide-4 { background-image:url("./imagens/4.jpg"); animation-delay: 15s; }
-.bg-carousel .slide-5 { background-image:url("./imagens/5.jpg"); animation-delay: 20s; }
-
-/* Crossfade suave entre as imagens */
-@keyframes bgFade {
-  0%   { opacity: 0; }
-  4%   { opacity: 1; }
-  20%  { opacity: 1; }
-  24%  { opacity: 0; }
-  100% { opacity: 0; }
-}
-.bg-carousel-overlay {
-  position: absolute;
   inset: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.45);        /* ajuste a opacidade aqui: 0.3 = leve, 0.6 = bem escuro */
-  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.70) 0%,
+    rgba(0, 0, 0, 0.50) 45%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
 }
+
 
 /* Conteúdo do header acima do fundo */
 
@@ -238,8 +230,6 @@ max-width: 1500px;
 
 .hero-text {
 flex: 1.1;
-margin-left: -200px;
-
 }
 
 .hero-kicker {
