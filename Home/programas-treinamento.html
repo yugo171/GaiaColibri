@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programas de Treinamento — GaiaColibri</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
+
+  <style>
+    /* ── RESET ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── TOKENS (mesmos do site principal) ─────────────────────── */
+    :root {
+      --primaria:        #6B745C;
+      --primaria-escuro: #2f3a2f;
+      --primaria-claro:  #d9ddce;
+      --texto-principal: #3E423B;
+      --texto-secundario:#4b5563;
+      --bg-page:         #f5f4f0;
+      --card-bg:         #ffffff;
+      --borda-suave:     #e0e2d9;
+      --sombra-card:     0 18px 45px rgba(15,23,42,.06);
+      --bg-band:         #ECEDE9;
+      --bg-band-alt:     #DADDD6;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg-page);
+      color: #171717;
+    }
+    h1, h2, h3, h4 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #9ea4a8; border-radius: 5px; }
+
+    /* ── NAVBAR ─────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      height: 76px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,12,10,.18);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      transition: background-color 220ms ease, box-shadow 220ms ease;
+    }
+    #navbar.navbar-scrolled {
+      background-color: rgba(47,58,47,.95);
+      box-shadow: 0 10px 30px rgba(10,12,10,.7);
+    }
+    .logo img { height: 50px; filter: brightness(10); }
+    .nav-back {
+      display: flex; align-items: center; gap: .5rem;
+      color: var(--primaria-claro); font-size: .85rem; font-weight: 500;
+      text-decoration: none; letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: #fff; }
+
+    /* ── HERO ───────────────────────────────────────────────────── */
+    .pg-hero {
+      position: relative; min-height: 90vh;
+      display: flex; align-items: center;
+      overflow: hidden; padding-top: 76px;
+    }
+    .pg-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url("./imagens/p.jpg");
+      background-size: cover; background-position: center 30%;
+    }
+    .pg-hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(15,23,10,.82) 0%,
+        rgba(15,23,10,.60) 50%,
+        rgba(15,23,10,.28) 100%
+      );
+    }
+    .pg-hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1300px; margin: 0 auto;
+      padding: 5rem 80px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 4rem; align-items: center;
+    }
+    .hero-kicker {
+      display: block;
+      text-transform: uppercase; letter-spacing: .16em; font-size: 12px;
+      color: rgba(255,255,255,.7); margin-bottom: 10px;
+    }
+    .pg-hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: .95; color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,.5);
+      margin-bottom: 1.5rem;
+    }
+    .pg-hero h1 span { color: var(--primaria-claro); display: block; }
+    .hero-subtitle {
+      font-size: 17px; line-height: 1.6;
+      color: rgba(255,255,255,.82); max-width: 480px; margin-bottom: 2rem;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+    .hero-cta-main {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 26px; border-radius: 999px;
+      background: var(--primaria); color: #fff;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      box-shadow: 0 14px 32px rgba(47,58,47,.45);
+      transition: background .25s, transform .25s, box-shadow .25s;
+    }
+    .hero-cta-main:hover {
+      background: var(--primaria-escuro); transform: translateY(-2px);
+    }
+    .hero-cta-link {
+      font-size: 14px; font-weight: 500; color: var(--primaria-claro);
+      text-decoration: none; position: relative; padding-bottom: 2px;
+    }
+    .hero-cta-link::after {
+      content: ''; position: absolute; left: 0; bottom: 0;
+      width: 0; height: 1px; background: var(--primaria-claro); transition: width .25s;
+    }
+    .hero-cta-link:hover::after { width: 100%; }
+
+    .hero-stats { display: flex; flex-direction: column; gap: 1rem; }
+    .hero-stat {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-left: 3px solid var(--primaria);
+      border-radius: 14px; padding: 1rem 1.4rem; min-width: 160px;
+    }
+    .hero-stat-val {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2rem; font-weight: 700; color: #fff; line-height: 1;
+    }
+    .hero-stat-label { font-size: .75rem; color: rgba(255,255,255,.5); margin-top: .2rem; }
+
+    /* ── SEÇÕES GENÉRICAS ───────────────────────────────────────── */
+    .section { padding: 90px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section h2 {
+      text-align: center; font-size: 60px;
+      color: var(--texto-principal); margin-bottom: 4px;
+    }
+    .section-subtitle {
+      color: var(--texto-secundario); font-size: 17px; line-height: 1.5;
+      margin: 0 auto 60px; max-width: 640px; text-align: center;
+    }
+    .eyebrow {
+      font-size: 12px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--primaria); margin-bottom: 10px;
+    }
+
+    /* ── OVERVIEW ───────────────────────────────────────────────── */
+    .section-overview { background: var(--bg-page); }
+    .overview-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; margin-top: 4rem;
+    }
+    .overview-image {
+      border-radius: 18px; overflow: hidden; aspect-ratio: 4/3;
+      box-shadow: 0 20px 55px rgba(15,23,42,.12);
+    }
+    .overview-image .img-ph {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--primaria-escuro), var(--primaria));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .overview-image .img-ph i { font-size: 5rem; color: rgba(255,255,255,.18); }
+    .overview-text h2 { text-align: left; font-size: clamp(2rem, 4vw, 3rem); }
+    .overview-text p {
+      font-size: 15px; line-height: 1.75;
+      color: var(--texto-secundario); margin-top: 1rem;
+    }
+    .stats-row { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+    .stat { display: flex; flex-direction: column; }
+    .stat-value {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2.5rem; font-weight: 700; color: var(--primaria-escuro); line-height: 1;
+    }
+    .stat-label { font-size: .78rem; color: var(--texto-secundario); letter-spacing: .06em; margin-top: .2rem; }
+
+    /* ── MODALIDADES ────────────────────────────────────────────── */
+    .section-modalities { background: var(--bg-band); }
+    .modalities-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; margin-top: 3rem;
+    }
+    .mod-card {
+      background: var(--card-bg); border-radius: 20px; padding: 2rem;
+      box-shadow: var(--sombra-card); border: 1px solid var(--borda-suave);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .mod-card:hover {
+      transform: translateY(-6px); box-shadow: 0 28px 60px rgba(15,23,42,.12);
+    }
+    .mod-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--bg-band-alt);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem; font-size: 1.4rem; color: var(--primaria);
+    }
+    .mod-card h3 { font-size: 1.2rem; color: var(--texto-principal); margin-bottom: .6rem; }
+    .mod-card p { font-size: 14px; line-height: 1.65; color: var(--texto-secundario); }
+
+    /* ── PROCESSO ───────────────────────────────────────────────── */
+    .section-process { background: var(--bg-page); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 4rem; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute; top: 27px; left: 5%; right: 5%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--primaria-claro), transparent);
+    }
+    .step { text-align: center; padding: 0 1rem; }
+    .step-num {
+      width: 54px; height: 54px;
+      background: var(--primaria-escuro); color: var(--primaria-claro);
+      font-family: "Barlow Condensed", sans-serif; font-size: 1.3rem; font-weight: 700;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem; position: relative; z-index: 1;
+      border: 3px solid var(--bg-page);
+      box-shadow: 0 0 0 1px var(--primaria);
+    }
+    .step h4 { font-size: 1rem; color: var(--texto-principal); margin-bottom: .4rem; }
+    .step p { font-size: 13px; line-height: 1.6; color: var(--texto-secundario); }
+
+    /* ── TEMAS ──────────────────────────────────────────────────── */
+    .section-themes { background: var(--bg-band); }
+    .themes-intro {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .themes-intro h2 { text-align: left; font-size: clamp(2rem, 4vw, 3rem); }
+    .themes-intro p { font-size: 15px; line-height: 1.7; color: var(--texto-secundario); max-width: 360px; }
+    .themes-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+    .theme-card {
+      background: var(--card-bg); border: 1px solid var(--borda-suave);
+      border-radius: 18px; padding: 1.6rem;
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      box-shadow: var(--sombra-card);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .theme-card:hover {
+      box-shadow: 0 22px 55px rgba(15,23,42,.1); transform: translateY(-3px);
+    }
+    .theme-num {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--primaria-claro); line-height: 1;
+      flex-shrink: 0; min-width: 2.2rem; text-align: right;
+    }
+    .theme-text h4 { font-size: 1rem; color: var(--texto-principal); margin-bottom: .35rem; }
+    .theme-text p { font-size: 13px; line-height: 1.6; color: var(--texto-secundario); }
+
+    /* ── DIFERENCIAIS ───────────────────────────────────────────── */
+    .section-diff { background: var(--primaria-escuro); }
+    .section-diff h2 { color: #fff; }
+    .section-diff .section-subtitle { color: rgba(255,255,255,.6); }
+    .diff-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .diff-item { display: flex; flex-direction: column; gap: .7rem; }
+    .diff-line {
+      width: 3rem; height: 3px;
+      background: linear-gradient(to right, var(--primaria), var(--primaria-claro));
+      border-radius: 2px;
+    }
+    .diff-item h4 { font-size: 1.1rem; color: #fff; }
+    .diff-item p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.6); }
+
+    /* ── CITAÇÃO ────────────────────────────────────────────────── */
+    .section-quote { background: var(--bg-band-alt); }
+    .quote-block {
+      max-width: 740px; margin: 0 auto;
+      text-align: center; padding: 3rem 2rem;
+    }
+    .quote-mark {
+      font-family: "Barlow Condensed", sans-serif; font-size: 7rem; line-height: .4;
+      color: var(--primaria-claro); display: block; margin-bottom: 1rem;
+    }
+    .quote-text {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-style: italic; line-height: 1.6; color: var(--texto-principal);
+    }
+    .quote-author {
+      margin-top: 1.5rem;
+      font-family: "Barlow Condensed", sans-serif; font-size: .95rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--primaria);
+    }
+
+    /* ── CTA ────────────────────────────────────────────────────── */
+    .section-cta {
+      background: var(--primaria); padding: 5rem 2rem; text-align: center;
+    }
+    .section-cta h2 { color: #fff; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: .8rem; }
+    .section-cta p { font-size: 16px; color: rgba(255,255,255,.75); margin-bottom: 2rem; }
+    .btn-dark {
+      background: var(--primaria-escuro); color: #fff;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      padding: 12px 32px; border-radius: 999px; text-decoration: none; display: inline-block;
+      transition: background .25s, transform .2s;
+    }
+    .btn-dark:hover { background: #111; transform: translateY(-2px); }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--primaria-escuro); color: rgba(255,255,255,.45);
+      text-align: center; padding: 1.8rem; font-size: .82rem;
+    }
+    footer a { color: var(--primaria-claro); text-decoration: none; }
+
+    /* ── REVEAL ─────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.active { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-left.active { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVO ─────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      #navbar { padding: 0 24px; }
+      .pg-hero-inner { grid-template-columns: 1fr; padding: 4rem 24px; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; }
+      .overview-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .themes-intro { flex-direction: column; align-items: flex-start; }
+      .process-steps::before { display: none; }
+      .section { padding: 60px 24px; }
+    }
+    @media (max-width: 560px) {
+      .diff-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="logo"><img src="./imagens/logo.png" alt="GaiaColibri"></div>
+  <a href="index.html" class="nav-back"><i class="bi bi-arrow-left"></i> Voltar ao site</a>
+</nav>
+
+<!-- HERO -->
+<section class="pg-hero">
+  <div class="pg-hero-bg"></div>
+  <div class="pg-hero-inner">
+    <div>
+      <span class="hero-kicker">Consultoria em Desenvolvimento Humano &amp; Liderança</span>
+      <h1>Programas de<span>Treinamento</span></h1>
+      <p class="hero-subtitle">
+        Jornadas completas de desenvolvimento que combinam teoria, prática e acompanhamento contínuo — desenhadas sob medida para os objetivos estratégicos da sua organização.
+      </p>
+      <div class="hero-actions">
+        <a href="index.html#contact" class="hero-cta-main"><span>Solicitar proposta</span><span>→</span></a>
+        <a href="#como-funciona" class="hero-cta-link"><strong>Como funciona</strong></a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-val">+15</div><div class="hero-stat-label">Anos de experiência</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">100%</div><div class="hero-stat-label">Personalizado</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">3×</div><div class="hero-stat-label">Formatos de entrega</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="section section-overview">
+  <div class="section-inner">
+    <div class="overview-grid">
+      <div class="overview-image reveal reveal-left">
+        <div class="img-ph"><i class="bi bi-people-fill"></i></div>
+      </div>
+      <div class="overview-text">
+        <span class="eyebrow reveal" style="display:block">Nossa abordagem</span>
+        <h2 class="reveal">Desenvolvimento<br>que transforma</h2>
+        <p class="reveal reveal-d1">
+          Nossos programas não são eventos isolados. São jornadas estruturadas que combinam diagnóstico, conteúdo sob medida, prática aplicada e acompanhamento pós-trilha — para que a aprendizagem gere impacto real e duradouro nas pessoas e na organização.
+        </p>
+        <div class="stats-row reveal reveal-d2">
+          <div class="stat"><span class="stat-value">+15</span><span class="stat-label">Anos de experiência</span></div>
+          <div class="stat"><span class="stat-value">100%</span><span class="stat-label">Personalizado</span></div>
+          <div class="stat"><span class="stat-value">3×</span><span class="stat-label">Formatos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section class="section section-modalities">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="display:block;text-align:center">Formatos</span>
+    <h2 class="reveal">Modalidades de entrega</h2>
+    <p class="section-subtitle reveal">Adaptamos o formato ao ritmo e à realidade da sua empresa.</p>
+    <div class="modalities-grid">
+      <div class="mod-card reveal reveal-d1">
+        <div class="mod-icon"><i class="bi bi-calendar-range-fill"></i></div>
+        <h3>Jornada Completa</h3>
+        <p>Programa de longa duração com módulos encadeados, projetos práticos e avaliações intermediárias. Ideal para transformações profundas de cultura e liderança.</p>
+      </div>
+      <div class="mod-card reveal reveal-d2">
+        <div class="mod-icon"><i class="bi bi-layers-fill"></i></div>
+        <h3>Trilhas Modulares</h3>
+        <p>Módulos independentes e progressivos que as equipes percorrem no próprio ritmo. Combina flexibilidade com consistência de aprendizagem.</p>
+      </div>
+      <div class="mod-card reveal reveal-d3">
+        <div class="mod-icon"><i class="bi bi-laptop-fill"></i></div>
+        <h3>Blended Learning</h3>
+        <p>Combinação de encontros presenciais intensivos com conteúdos digitais assíncronos. Maximiza alcance sem perder o componente relacional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="como-funciona" class="section section-process">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="display:block;text-align:center">Metodologia</span>
+    <h2 class="reveal">Como funciona</h2>
+    <p class="section-subtitle reveal">Da análise ao resultado, cada etapa tem propósito e entrega definidos.</p>
+    <div class="process-steps">
+      <div class="step reveal reveal-d1">
+        <div class="step-num">01</div>
+        <h4>Diagnóstico</h4>
+        <p>Mapeamos o contexto, os desafios e os objetivos estratégicos para desenhar o programa ideal.</p>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="step-num">02</div>
+        <h4>Desenho</h4>
+        <p>Criamos a trilha de aprendizagem sob medida, com conteúdo, metodologias e carga horária adequados.</p>
+      </div>
+      <div class="step reveal reveal-d3">
+        <div class="step-num">03</div>
+        <h4>Entrega</h4>
+        <p>Conduzimos os encontros com facilitação experiente, material exclusivo e práticas aplicadas.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.4s">
+        <div class="step-num">04</div>
+        <h4>Acompanhamento</h4>
+        <p>Monitoramos indicadores e realizamos sessões de transferência para garantir sustentabilidade dos resultados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMAS -->
+<section class="section section-themes">
+  <div class="section-inner">
+    <div class="themes-intro">
+      <div>
+        <span class="eyebrow reveal" style="display:block">Conteúdos</span>
+        <h2 class="reveal">Temas que trabalhamos</h2>
+      </div>
+      <p class="reveal">Todos os conteúdos são contextualizados ao momento e à cultura da sua organização.</p>
+    </div>
+    <div class="themes-grid">
+      <div class="theme-card reveal reveal-d1"><span class="theme-num">01</span><div class="theme-text"><h4>Liderança Consciente</h4><p>Desenvolvimento da autoconsciência, presença e capacidade de influenciar com autenticidade.</p></div></div>
+      <div class="theme-card reveal reveal-d2"><span class="theme-num">02</span><div class="theme-text"><h4>Comunicação &amp; Feedback</h4><p>Ferramentas práticas para diálogos mais honestos, eficazes e seguros psicologicamente.</p></div></div>
+      <div class="theme-card reveal reveal-d3"><span class="theme-num">03</span><div class="theme-text"><h4>Gestão de Times</h4><p>Como criar e sustentar equipes de alta performance com diversidade, confiança e propósito.</p></div></div>
+      <div class="theme-card reveal reveal-d1"><span class="theme-num">04</span><div class="theme-text"><h4>Inteligência Emocional</h4><p>Ampliação da capacidade de regular emoções, empatia e tomada de decisão sob pressão.</p></div></div>
+      <div class="theme-card reveal reveal-d2"><span class="theme-num">05</span><div class="theme-text"><h4>Cultura &amp; Transformação</h4><p>Processos para alinhar comportamentos ao propósito e à estratégia organizacional.</p></div></div>
+      <div class="theme-card reveal reveal-d3"><span class="theme-num">06</span><div class="theme-text"><h4>Diversidade &amp; Inclusão</h4><p>Programas que desenvolvem competências para ambientes plurais, equitativos e pertencentes.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="section section-diff">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="display:block;text-align:center;color:var(--primaria-claro)">Por que a Gaia Colibri</span>
+    <h2 class="reveal">Nossos diferenciais</h2>
+    <p class="section-subtitle reveal" style="color:rgba(255,255,255,.6)">O que nos diferencia na prática.</p>
+    <div class="diff-grid">
+      <div class="diff-item reveal reveal-d1"><div class="diff-line"></div><h4>Sob medida, sempre</h4><p>Nenhum programa é padronizado. Cada jornada é construída a partir do diagnóstico real da sua organização.</p></div>
+      <div class="diff-item reveal reveal-d2"><div class="diff-line"></div><h4>Resultado sustentável</h4><p>Trabalhamos com indicadores antes, durante e depois — para garantir que o aprendizado se converta em mudança real.</p></div>
+      <div class="diff-item reveal reveal-d3"><div class="diff-line"></div><h4>Facilitação humanizada</h4><p>Profissionais com vivência em contextos globais e multiculturais, que facilitam com presença, escuta e técnica.</p></div>
+      <div class="diff-item reveal" style="transition-delay:.4s"><div class="diff-line"></div><h4>Experiência comprovada</h4><p>Mais de 15 anos formando líderes e equipes em empresas nacionais e multinacionais de diferentes setores.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CITAÇÃO -->
+<section class="section section-quote">
+  <div class="section-inner">
+    <div class="quote-block reveal">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">O desenvolvimento humano não acontece em um dia. Ele se constrói em jornadas consistentes, com intenção, relação e prática contínua.</p>
+      <p class="quote-author">— Sonia Cerqueira, Fundadora da Gaia Colibri</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-cta">
+  <h2 class="reveal">Pronto para começar?</h2>
+  <p class="reveal reveal-d1">Conte-nos sobre sua organização e vamos desenhar o programa ideal juntos.</p>
+  <a href="index.html#contact" class="btn-dark reveal reveal-d2">Agendar uma conversa</a>
+</section>
+
+<footer>
+  <p>© 2025 GaiaColibri Consultoria — <a href="index.html">Voltar ao site</a></p>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('navbar-scrolled', window.scrollY > 40);
+  });
+  const reveals = document.querySelectorAll('.reveal, .reveal-left');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+  }, { threshold: .1 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

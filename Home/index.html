@@ -173,7 +173,7 @@
                     alinhado aos objetivos estratégicos da empresa.
                  </p>
 
-                 <a href="#contact" class="solution-button">Conheça o programa</a>
+                 <a href="programas-treinamento.html" class="solution-button">Conheça o programa</a>
                 </div>
             </article>
 
@@ -191,7 +191,7 @@
                     promovem ganhos consistentes de performance.
                 </p>
 
-                 <a href="#contact" class="solution-button">Conheça os workshops</a>
+                 <a href="workshops.html" class="solution-button">Conheça os workshops</a>
                 </div>
             </article>
 
@@ -343,27 +343,120 @@
                 </ul>
             
 
-                <!-- COLUNA DIREITA -->
-                <form class="contact-form">
-                    <div class="form-row">
-                        <input type="text" name="nome" placeholder="Nome da empresa" required>
-                    </div>
+                <form class="contact-form" method="post" action="/contato">
+                        <!-- Identificação básica -->
+                        <div class="form-row-inline">
+                            <div class="form-field">
+                                <label for="company">Nome da empresa*</label>
+                                <input type="text" id="company" name="company" placeholder="Ex.: Gaia Colibri Consultoria" required>
+                            </div>
 
-                    <div class="form-row">
-                        <input type="email" name="email" placeholder="E-mail corporativo" required>
-                    </div>
+                            <div class="form-field">
+                                <label for="name">Seu nome*</label>
+                                <input type="text" id="name" name="name" placeholder="Nome completo" required>
+                            </div>
+                        </div>
 
-                    <div class="form-row">
-                        <input type="text" name="cargo" placeholder="Seu cargo">
-                    </div>
+                        <div class="form-row-inline">
+                            <div class="form-field">
+                                <label for="email">E-mail corporativo*</label>
+                                <input type="email" id="email" name="email" placeholder="voce@suaempresa.com" required>
+                            </div>
 
-                    <div class="form-row">
-                        <textarea name="mensagem" rows="4" placeholder="Conte brevemente o contexto e os desafios atuais"></textarea>
-                    </div>
+                            <div class="form-field">
+                                <label for="role">Seu cargo</label>
+                                <input type="text" id="role" name="role" placeholder="Ex.: Diretora de RH, CEO, Coordenador de Projetos">
+                            </div>
+                        </div>
 
-                    <button type="submit" class="btn-primary">Enviar mensagem</button>
-                </form>
-            </div>
+                        <!-- Contexto da demanda -->
+                        <div class="form-row">
+                            <label for="interest">Qual é o foco principal da sua demanda?*</label>
+                            <select id="interest" name="interest" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="diagnostico">Diagnóstico organizacional</option>
+                            <option value="estrategia">Planejamento estratégico</option>
+                            <option value="lideranca">Desenvolvimento de lideranças</option>
+                            <option value="clima">Cultura e clima organizacional</option>
+                            <option value="projetos">Gestão de projetos / PMO</option>
+                            <option value="outra">Outra necessidade de consultoria</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row-inline">
+                            <div class="form-field">
+                            <label for="company-size">Tamanho da empresa</label>
+                            <select id="company-size" name="company_size">
+                                <option value="" selected>Selecione</option>
+                                <option value="1-20">1 a 20 pessoas</option>
+                                <option value="21-50">21 a 50 pessoas</option>
+                                <option value="51-200">51 a 200 pessoas</option>
+                                <option value="201-500">201 a 500 pessoas</option>
+                                <option value="500+">Acima de 500 pessoas</option>
+                            </select>
+                            </div>
+
+                            <div class="form-field">
+                            <label for="urgency">Em qual horizonte de tempo você pretende avançar?*</label>
+                            <select id="urgency" name="urgency" required>
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="30">Nos próximos 30 dias</option>
+                                <option value="60-90">Em 60 a 90 dias</option>
+                                <option value="90+">Ainda em fase de avaliação</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <!-- Descrição -->
+                        <div class="form-row">
+                            <label for="message">Conte brevemente o contexto e os desafios atuais*</label>
+                            <textarea id="message" name="message" rows="4" required
+                            placeholder="Conte-nos sobre o momento da organização, os desafios prioritários e o resultado que você busca com a consultoria."></textarea>
+                        </div>
+
+                        <!-- Consentimento e alinhamento -->
+                        <div class="form-row">
+                            <label for="preferred-contact">Como prefere ser contatado(a)?</label>
+                            <select id="preferred-contact" name="preferred_contact">
+                            <option value="" selected>Selecione (opcional)</option>
+                            <option value="email">E-mail</option>
+                            <option value="phone">Ligação</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="video">Videoconferência</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row-inline">
+                            <div class="form-field">
+                            <label for="phone">Telefone / WhatsApp (opcional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999">
+                            </div>
+
+                            <div class="form-field">
+                            <label for="best-time">Melhor horário para contato (opcional)</label>
+                            <input type="text" id="best-time" name="best_time" placeholder="Ex.: dias úteis, 9h às 12h">
+                            </div>
+                        </div>
+
+                        <!-- LGPD -->
+                        <div class="form-row form-row-consent">
+                            <label class="checkbox-container">
+                            <input type="checkbox" name="lgpd_consent" required>
+                            <span class="checkbox-label">
+                                Li e concordo em compartilhar meus dados para que a Gaia Colibri entre em contato sobre esta solicitação.
+                            </span>
+                            </label>
+                            <small class="privacy-note">
+                            Seus dados serão utilizados apenas para responder à sua mensagem e não serão compartilhados com terceiros, em conformidade com a LGPD.
+                            </small>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Agendar conversa</button>
+
+                        <p class="form-footnote">
+                            Após o envio, retornaremos em até 2 dias úteis para sugerir datas e formatos para a primeira conversa.
+                        </p>
+            </form>
         </div>
     </section>
                 <script>

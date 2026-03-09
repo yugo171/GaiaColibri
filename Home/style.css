@@ -295,7 +295,7 @@ flex: 1.1;
 .hero-cta-link {
   font-size: 14px;
   font-weight: 500;
-  color: var(--primaria);
+  color: var(--primaria-claro);
   text-decoration: none;
   position: relative;
   padding-bottom: 2px;
@@ -1110,6 +1110,126 @@ transform: translateY(-1px);
   }
 }
 
+/* Layout de campos em linha */
+.form-row-inline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-form label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.contact-form small,
+.form-footnote,
+.privacy-note {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* Ajuste dos inputs para combinar com labels */
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  padding: 12px 16px;     /* mesma medida para todos */
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;       /* igual em todos */
+  outline: none;
+  background-color: #f9fafb;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.contact-form textarea {
+  border-radius: 16px;
+  resize: vertical;
+}
+
+/* Select com setinha nativa suavizada */
+.contact-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #6b745c 50%),
+                    linear-gradient(135deg, #6b745c 50%, transparent 50%);
+  background-position: calc(100% - 16px) calc(50% - 3px),
+                       calc(100% - 11px) calc(50% - 3px);
+  background-size: 5px 5px,
+                   5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* Hover / focus */
+.contact-form input:hover,
+.contact-form textarea:hover,
+.contact-form select:hover {
+  border-color: #0f766e;
+  background-color: #ffffff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Checkbox LGPD */
+.form-row-consent {
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #374151;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.checkbox-label {
+  line-height: 1.5;
+}
+
+/* Rodapé do formulário */
+.form-footnote {
+  margin-top: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .form-row-inline {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 
 /* CLIENTES */
 
@@ -1424,5 +1544,9 @@ grid-template-columns: 1fr;
 .clients-track .client-logo:nth-child(7) { animation-delay: -7.8s; }
 .clients-track .client-logo:nth-child(8) { animation-delay: -9.1s; }
 .clients-track .client-logo:nth-child(9) { animation-delay: -10.4s; }
+
+
+
+
 
 /* FIM DO CSS HOME */
