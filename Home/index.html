@@ -308,157 +308,205 @@
     
           
     <section id="contact" class="section section-contact">
-        <div class="section-inner">
-            <!-- COLUNA ESQUERDA -->
-            <div class="match-conversation">  
-                <h2>Agende uma conversa!</h2>
+  <div class="section-inner">
 
-                <p class="section-subtitle">
-                    Conte-nos sobre os desafios da sua organização. Vamos construir juntos uma solução sob medida.
-                </p>
-            </div>  
-            
-            <div class="contact-layout">
+    <!-- CABEÇALHO -->
+    <div class="contact-head reveal">
+      <div class="eyebrow-tag">
+        <i class="bi bi-calendar2-check"></i>
+        Fale com a Gaia Colibri
+      </div>
+      <h2>Agende uma conversa</h2>
+      <p>Conte-nos sobre os desafios da sua organização. Vamos construir juntos uma solução sob medida.</p>
+    </div>
 
-                <ul class="contact-info">
-                        <li>
-                            <a href="mailto:contato@gaiacolibri.com" class="contact-item">
-                                <span class="contact-icon">✉</span>
-                                <div class="contact-text">
-                                <strong>E-mail</strong>
-                                <span>contato@gaiacolibri.com</span>
-                                </div>
-                            </a>
-                        </li>
+    <!-- CARD -->
+    <div class="contact-card reveal">
 
-                        <li>
-                            <a href="https://www.linkedin.com/..." target="_blank" class="contact-item">
-                                <span class="contact-icon">in</span>
-                                <div class="contact-text">
-                                <strong>LinkedIn</strong>
-                                <span>Perfil Gaia Colibri</span>
-                                </div>
-                            </a>
-                        </li>
-                </ul>
-            
+      <!-- SIDEBAR -->
+      <aside class="contact-sidebar">
+        <img src="./imagens/logo.png" alt="GaiaColibri" class="sidebar-logo">
 
-                <form class="contact-form" method="post" action="/contato">
-                        <!-- Identificação básica -->
-                        <div class="form-row-inline">
-                            <div class="form-field">
-                                <label for="company">Nome da empresa*</label>
-                                <input type="text" id="company" name="company" placeholder="Ex.: Gaia Colibri Consultoria" required>
-                            </div>
+        <p class="sidebar-title">Entre em contato</p>
+        <p class="sidebar-desc">Escolha o canal de sua preferência ou preencha o formulário. Respondemos em até 2 dias úteis.</p>
 
-                            <div class="form-field">
-                                <label for="name">Seu nome*</label>
-                                <input type="text" id="name" name="name" placeholder="Nome completo" required>
-                            </div>
-                        </div>
+        <div class="sidebar-contacts">
+          <a href="mailto:contato@gaiacolibri.com" class="sidebar-contact-item">
+            <div class="sidebar-contact-icon">
+              <i class="bi bi-envelope-fill"></i>
+            </div>
+            <div class="sidebar-contact-text">
+              <strong>E-mail</strong>
+              <span>contato@gaiacolibri.com</span>
+            </div>
+          </a>
 
-                        <div class="form-row-inline">
-                            <div class="form-field">
-                                <label for="email">E-mail corporativo*</label>
-                                <input type="email" id="email" name="email" placeholder="voce@suaempresa.com" required>
-                            </div>
+          <a href="https://www.linkedin.com/company/gaiacolibri" target="_blank" class="sidebar-contact-item">
+            <div class="sidebar-contact-icon">
+              <i class="bi bi-linkedin"></i>
+            </div>
+            <div class="sidebar-contact-text">
+              <strong>LinkedIn</strong>
+              <span>Perfil Gaia Colibri</span>
+            </div>
+          </a>
 
-                            <div class="form-field">
-                                <label for="role">Seu cargo</label>
-                                <input type="text" id="role" name="role" placeholder="Ex.: Diretora de RH, CEO, Coordenador de Projetos">
-                            </div>
-                        </div>
-
-                        <!-- Contexto da demanda -->
-                        <div class="form-row">
-                            <label for="interest">Qual é o foco principal da sua demanda?*</label>
-                            <select id="interest" name="interest" required>
-                            <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="diagnostico">Diagnóstico organizacional</option>
-                            <option value="estrategia">Planejamento estratégico</option>
-                            <option value="lideranca">Desenvolvimento de lideranças</option>
-                            <option value="clima">Cultura e clima organizacional</option>
-                            <option value="projetos">Gestão de projetos / PMO</option>
-                            <option value="outra">Outra necessidade de consultoria</option>
-                            </select>
-                        </div>
-
-                        <div class="form-row-inline">
-                            <div class="form-field">
-                            <label for="company-size">Tamanho da empresa</label>
-                            <select id="company-size" name="company_size">
-                                <option value="" selected>Selecione</option>
-                                <option value="1-20">1 a 20 pessoas</option>
-                                <option value="21-50">21 a 50 pessoas</option>
-                                <option value="51-200">51 a 200 pessoas</option>
-                                <option value="201-500">201 a 500 pessoas</option>
-                                <option value="500+">Acima de 500 pessoas</option>
-                            </select>
-                            </div>
-
-                            <div class="form-field">
-                            <label for="urgency">Em qual horizonte de tempo você pretende avançar?*</label>
-                            <select id="urgency" name="urgency" required>
-                                <option value="" disabled selected>Selecione</option>
-                                <option value="30">Nos próximos 30 dias</option>
-                                <option value="60-90">Em 60 a 90 dias</option>
-                                <option value="90+">Ainda em fase de avaliação</option>
-                            </select>
-                            </div>
-                        </div>
-
-                        <!-- Descrição -->
-                        <div class="form-row">
-                            <label for="message">Conte brevemente o contexto e os desafios atuais*</label>
-                            <textarea id="message" name="message" rows="4" required
-                            placeholder="Conte-nos sobre o momento da organização, os desafios prioritários e o resultado que você busca com a consultoria."></textarea>
-                        </div>
-
-                        <!-- Consentimento e alinhamento -->
-                        <div class="form-row">
-                            <label for="preferred-contact">Como prefere ser contatado(a)?</label>
-                            <select id="preferred-contact" name="preferred_contact">
-                            <option value="" selected>Selecione (opcional)</option>
-                            <option value="email">E-mail</option>
-                            <option value="phone">Ligação</option>
-                            <option value="whatsapp">WhatsApp</option>
-                            <option value="video">Videoconferência</option>
-                            </select>
-                        </div>
-
-                        <div class="form-row-inline">
-                            <div class="form-field">
-                            <label for="phone">Telefone / WhatsApp (opcional)</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999">
-                            </div>
-
-                            <div class="form-field">
-                            <label for="best-time">Melhor horário para contato (opcional)</label>
-                            <input type="text" id="best-time" name="best_time" placeholder="Ex.: dias úteis, 9h às 12h">
-                            </div>
-                        </div>
-
-                        <!-- LGPD -->
-                        <div class="form-row form-row-consent">
-                            <label class="checkbox-container">
-                            <input type="checkbox" name="lgpd_consent" required>
-                            <span class="checkbox-label">
-                                Li e concordo em compartilhar meus dados para que a Gaia Colibri entre em contato sobre esta solicitação.
-                            </span>
-                            </label>
-                            <small class="privacy-note">
-                            Seus dados serão utilizados apenas para responder à sua mensagem e não serão compartilhados com terceiros, em conformidade com a LGPD.
-                            </small>
-                        </div>
-
-                        <button type="submit" class="btn-primary">Agendar conversa</button>
-
-                        <p class="form-footnote">
-                            Após o envio, retornaremos em até 2 dias úteis para sugerir datas e formatos para a primeira conversa.
-                        </p>
-            </form>
+          <a href="https://wa.me/5511999999999" target="_blank" class="sidebar-contact-item">
+            <div class="sidebar-contact-icon">
+              <i class="bi bi-whatsapp"></i>
+            </div>
+            <div class="sidebar-contact-text">
+              <strong>WhatsApp</strong>
+              <span>Clique para conversar</span>
+            </div>
+          </a>
         </div>
-    </section>
+
+        <div class="sidebar-promise">
+          <strong>Nosso compromisso</strong>
+          <p>Após o envio, retornaremos em até 2 dias úteis com uma proposta de agenda para a primeira conversa.</p>
+        </div>
+      </aside>
+
+      <!-- FORMULÁRIO -->
+      <div class="contact-form-wrap">
+        <form method="post" action="/contato">
+
+          <!-- 1. Identificação -->
+          <div class="form-section-label">Identificação</div>
+
+          <div class="form-row-inline">
+            <div class="form-field">
+              <label for="company">Nome da empresa <span style="color:var(--primaria)">*</span></label>
+              <input type="text" id="company" name="company"
+                     placeholder="Ex.: Gaia Colibri Consultoria" required>
+            </div>
+            <div class="form-field">
+              <label for="name">Seu nome <span style="color:var(--primaria)">*</span></label>
+              <input type="text" id="name" name="name"
+                     placeholder="Nome completo" required>
+            </div>
+          </div>
+
+          <div class="form-row-inline">
+            <div class="form-field">
+              <label for="email">E-mail corporativo <span style="color:var(--primaria)">*</span></label>
+              <input type="email" id="email" name="email"
+                     placeholder="voce@suaempresa.com" required>
+            </div>
+            <div class="form-field">
+              <label for="role">Seu cargo</label>
+              <input type="text" id="role" name="role"
+                     placeholder="Ex.: Diretora de RH, CEO">
+            </div>
+          </div>
+
+          <!-- 2. Demanda -->
+          <div class="form-section-label">Contexto da demanda</div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="interest">Foco principal da demanda <span style="color:var(--primaria)">*</span></label>
+              <select id="interest" name="interest" required>
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option value="diagnostico">Diagnóstico organizacional</option>
+                <option value="estrategia">Planejamento estratégico</option>
+                <option value="lideranca">Desenvolvimento de lideranças</option>
+                <option value="clima">Cultura e clima organizacional</option>
+                <option value="projetos">Gestão de projetos / PMO</option>
+                <option value="outra">Outra necessidade de consultoria</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-inline">
+            <div class="form-field">
+              <label for="company-size">Tamanho da empresa</label>
+              <select id="company-size" name="company_size">
+                <option value="" selected>Selecione</option>
+                <option value="1-20">1 a 20 pessoas</option>
+                <option value="21-50">21 a 50 pessoas</option>
+                <option value="51-200">51 a 200 pessoas</option>
+                <option value="201-500">201 a 500 pessoas</option>
+                <option value="500+">Acima de 500 pessoas</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="urgency">Horizonte de tempo <span style="color:var(--primaria)">*</span></label>
+              <select id="urgency" name="urgency" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="30">Nos próximos 30 dias</option>
+                <option value="60-90">Em 60 a 90 dias</option>
+                <option value="90+">Ainda em fase de avaliação</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="message">Contexto e desafios atuais <span style="color:var(--primaria)">*</span></label>
+              <textarea id="message" name="message" rows="4" required
+                placeholder="Conte-nos sobre o momento da organização, os desafios prioritários e o resultado que você busca."></textarea>
+            </div>
+          </div>
+
+          <!-- 3. Contato -->
+          <div class="form-section-label">Preferências de contato</div>
+
+          <div class="form-row-inline">
+            <div class="form-field">
+              <label for="preferred-contact">Como prefere ser contatado(a)?</label>
+              <select id="preferred-contact" name="preferred_contact">
+                <option value="" selected>Selecione (opcional)</option>
+                <option value="email">E-mail</option>
+                <option value="phone">Ligação</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="video">Videoconferência</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="best-time">Melhor horário para contato</label>
+              <input type="text" id="best-time" name="best_time"
+                     placeholder="Ex.: dias úteis, 9h às 12h">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Telefone / WhatsApp</label>
+              <input type="tel" id="phone" name="phone"
+                     placeholder="(11) 99999-9999">
+            </div>
+          </div>
+
+          <!-- LGPD -->
+          <div class="lgpd-block">
+            <label class="checkbox-container">
+              <input type="checkbox" name="lgpd_consent" required>
+              <span class="checkbox-label">
+                Li e concordo em compartilhar meus dados para que a Gaia Colibri entre em contato sobre esta solicitação.
+              </span>
+            </label>
+            <span class="privacy-note">
+              Seus dados serão utilizados apenas para responder à sua mensagem e não serão compartilhados com terceiros, em conformidade com a LGPD.
+            </span>
+          </div>
+
+          <!-- BOTÃO -->
+          <button type="submit" class="btn-submit">
+            <span>Agendar conversa</span>
+            <span class="btn-submit-arrow">→</span>
+          </button>
+
+          <p class="form-footnote">
+            Após o envio, retornaremos em até 2 dias úteis para sugerir datas e formatos.
+          </p>
+
+        </form>
+      </div><!-- /contact-form-wrap -->
+    </div><!-- /contact-card -->
+  </div><!-- /section-inner -->
+</section>
                 <script>
                     const reveals = document.querySelectorAll(".reveal");
 
