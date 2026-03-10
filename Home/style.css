@@ -429,6 +429,17 @@ color: #fff;
     padding: 90px 40px;
 }
 
+#search h2 {
+    color: white;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+#search .section-subtitle {
+    color: white;
+}
+
 .section-inner {
 max-width: 1100px;
 margin: 0 auto;
@@ -982,7 +993,7 @@ transform: translateY(-1px);
 
 .section-contact {
   background: var(--bg-page);
-  padding: 100px 40px;
+  padding: 80px 40px;
   position: relative;
   overflow: hidden;
 }
@@ -1523,7 +1534,7 @@ border-bottom: 1px solid rgba(0,0,0,0.04);
 width: 100vw;                 /* ocupa a tela inteira */
 margin-left: calc(50% - 50vw);/* quebra o container central */
   
-background: #ECEDE9;
+background: var(--primaria-escuro);;
 padding: 50px 0;              /* controla a ALTURA da faixa */
 overflow: hidden;
 
