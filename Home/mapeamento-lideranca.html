@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapeamento de Líderes — GaiaColibri</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primaria:        #6B745C;
+      --primaria-escuro: #2f3a2f;
+      --primaria-claro:  #d9ddce;
+      --texto-principal: #3E423B;
+      --texto-secundario:#4b5563;
+      --bg-page:         #f5f4f0;
+      --card-bg:         #ffffff;
+      --borda-suave:     #e0e2d9;
+      --sombra-card:     0 18px 45px rgba(15,23,42,.06);
+      --bg-band:         #ECEDE9;
+      --bg-band-alt:     #DADDD6;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: "Inter", system-ui, sans-serif; background: var(--bg-page); color: #171717; }
+    h1, h2, h3, h4 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #9ea4a8; border-radius: 5px; }
+
+    /* ── NAVBAR ─────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      height: 76px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,12,10,.18);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      transition: background-color 220ms, box-shadow 220ms;
+    }
+    #navbar.navbar-scrolled {
+      background-color: rgba(47,58,47,.95);
+      box-shadow: 0 10px 30px rgba(10,12,10,.7);
+    }
+    .logo img { height: 50px; filter: brightness(10); }
+    .nav-back {
+      display: flex; align-items: center; gap: .5rem;
+      color: var(--primaria-claro); font-size: .85rem; font-weight: 500;
+      text-decoration: none; letter-spacing: .04em; transition: color .2s;
+    }
+    .nav-back:hover { color: #fff; }
+
+    /* ── HERO ───────────────────────────────────────────────────── */
+    .pg-hero {
+      position: relative; min-height: 92vh;
+      display: flex; align-items: center;
+      overflow: hidden; padding-top: 76px;
+    }
+    .pg-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(135deg, #1a2e1a 0%, #2f3a2f 50%, #3d4e35 100%);
+    }
+    /* padrão geométrico sutil */
+    .pg-hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 20% 50%, rgba(107,116,92,.25) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(217,221,206,.06) 0%, transparent 40%);
+    }
+    .pg-hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .pg-hero-inner {
+      position: relative; z-index: 1;
+      max-width: 860px; margin: 0 auto;
+      padding: 6rem 50px 5rem;
+      text-align: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--primaria-claro);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 999px;
+      margin-bottom: 22px;
+    }
+    .pg-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: .96; color: #fff;
+      text-shadow: 0 2px 16px rgba(0,0,0,.4);
+      margin-bottom: 1.6rem;
+    }
+    .pg-hero h1 em {
+      font-style: normal; color: var(--primaria-claro); display: block;
+    }
+    .hero-subtitle {
+      font-size: 17px; line-height: 1.7;
+      color: rgba(255,255,255,.72); max-width: 600px;
+      margin: 0 auto 2.5rem; 
+    }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .hero-cta-main {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 28px; border-radius: 999px;
+      background: var(--primaria); color: #fff;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      box-shadow: 0 14px 32px rgba(47,58,47,.45);
+      transition: background .25s, transform .2s;
+    }
+    .hero-cta-main:hover { background: var(--primaria-escuro); transform: translateY(-2px); }
+    .hero-cta-link {
+      font-size: 14px; font-weight: 500; color: var(--primaria-claro);
+      text-decoration: none; position: relative; padding-bottom: 2px;
+    }
+    .hero-cta-link::after {
+      content: ''; position: absolute; left: 0; bottom: 0;
+      width: 0; height: 1px; background: var(--primaria-claro); transition: width .25s;
+    }
+    .hero-cta-link:hover::after { width: 100%; }
+
+    /* hero stats inline */
+    .hero-inline-stats {
+      display: flex; align-items: center; justify-content: center;
+      gap: 2.5rem; flex-wrap: nowrap;
+      margin-top: 3rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-inline-stat { text-align: center; }
+    .hero-inline-val {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2.2rem; font-weight: 700; color: var(--primaria-claro); line-height: 1;
+    }
+    .hero-inline-label { font-size: 18px; color: rgba(255,255,255,.45); margin-top: .2rem; letter-spacing: .02em; }
+    .hero-inline-divider { width: 2px; height: 40px; background: rgba(255,255,255,.12); }
+
+    /* ── SEÇÕES ─────────────────────────────────────────────────── */
+    .section { padding: 90px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section h2 {
+      text-align: center; font-size: 60px;
+      color: var(--texto-principal); margin-bottom: 4px;
+    }
+    .section-subtitle {
+      color: var(--texto-secundario); font-size: 17px; line-height: 1.5;
+      margin: 0 auto 60px; max-width: 640px; text-align: center;
+    }
+    .eyebrow {
+      display: block; font-size: 12px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--primaria); margin-bottom: 10px;
+    }
+
+    /* ── CONTEXTO DO PROBLEMA ───────────────────────────────────── */
+    .section-context { background: var(--bg-page); }
+    .context-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; margin-top: 3rem;
+    }
+    .context-left h2 { text-align: left; font-size: clamp(2rem, 4vw, 3rem); }
+    .context-left p {
+      font-size: 15px; line-height: 1.8; color: var(--texto-secundario); margin-top: 1rem;
+    }
+    .pain-list {
+      list-style: none; display: flex; flex-direction: column;
+      gap: .8rem; margin-top: 2rem;
+    }
+    .pain-list li {
+      display: flex; align-items: flex-start; gap: .9rem;
+      background: var(--card-bg); border: 1px solid var(--borda-suave);
+      border-radius: 12px; padding: 1rem 1.2rem;
+      font-size: 14px; line-height: 1.55; color: var(--texto-secundario);
+      box-shadow: var(--sombra-card);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .pain-list li:hover { transform: translateX(4px); box-shadow: 0 12px 30px rgba(15,23,42,.1); }
+    .pain-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: var(--bg-band);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: .95rem; color: var(--primaria); margin-top: .05rem;
+    }
+
+    /* ── O QUE É ────────────────────────────────────────────────── */
+    .section-what { background: var(--bg-band); }
+    .what-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; margin-top: 3rem;
+    }
+    .what-visual {
+      border-radius: 18px; overflow: hidden; aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--primaria-escuro), var(--primaria));
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 20px 55px rgba(15,23,42,.14);
+      position: relative;
+    }
+    .what-visual-inner {
+      text-align: center; padding: 2rem;
+    }
+    .what-visual-icon { font-size: 5rem; color: rgba(255,255,255,.15); display: block; margin-bottom: 1rem; }
+    .what-visual-label {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.2rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.5);
+    }
+    /* rede de pontos decorativa */
+    .what-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.15) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: .5;
+    }
+    .what-text h2 { text-align: left; font-size: clamp(2rem, 4vw, 3rem); }
+    .what-text p { font-size: 15px; line-height: 1.8; color: var(--texto-secundario); margin-top: 1rem; }
+    .what-text p + p { margin-top: .8rem; }
+    .what-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-band-alt); border: 1px solid var(--borda-suave);
+      color: var(--primaria);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .25rem .9rem; border-radius: 999px; margin-bottom: 1rem;
+    }
+
+    /* ── PROCESSO ───────────────────────────────────────────────── */
+    .section-process { background: var(--bg-page); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 2rem; margin-top: 4rem; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute; top: 27px; left: 5%; right: 5%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--primaria-claro), transparent);
+    }
+    .step { text-align: center; padding: 0 1rem; }
+    .step-num {
+      width: 54px; height: 54px;
+      background: var(--primaria-escuro); color: var(--primaria-claro);
+      font-family: "Barlow Condensed", sans-serif; font-size: 1.3rem; font-weight: 700;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem; position: relative; z-index: 1;
+      border: 3px solid var(--bg-page);
+      box-shadow: 0 0 0 1px var(--primaria);
+    }
+    .step h4 { font-size: 1rem; color: var(--texto-principal); margin-bottom: .4rem; }
+    .step p { font-size: 13px; line-height: 1.6; color: var(--texto-secundario); }
+
+    /* ── ENTREGÁVEIS ────────────────────────────────────────────── */
+    .section-deliverables { background: var(--bg-band); }
+    .deliverables-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem; margin-top: 3rem;
+    }
+    .deliverable-card {
+      background: var(--card-bg); border: 1px solid var(--borda-suave);
+      border-radius: 18px; padding: 1.8rem;
+      box-shadow: var(--sombra-card);
+      display: flex; flex-direction: column; gap: .8rem;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .deliverable-card:hover {
+      transform: translateY(-4px); box-shadow: 0 22px 55px rgba(15,23,42,.1);
+    }
+    .deliverable-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--bg-band-alt);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--primaria);
+    }
+    .deliverable-card h4 { font-size: 1rem; color: var(--texto-principal); }
+    .deliverable-card p { font-size: 13px; line-height: 1.6; color: var(--texto-secundario); }
+
+    /* ── PARA QUEM É ────────────────────────────────────────────── */
+    .section-audience { background: var(--bg-page); }
+    .audience-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem; margin-top: 3rem;
+    }
+    .audience-card {
+      background: var(--card-bg); border: 1px solid var(--borda-suave);
+      border-top: 3px solid var(--primaria);
+      border-radius: 18px; padding: 1.8rem;
+      box-shadow: var(--sombra-card);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .audience-card:hover {
+      transform: translateY(-4px); box-shadow: 0 22px 55px rgba(15,23,42,.1);
+    }
+    .audience-card h4 { font-size: 1rem; color: var(--texto-principal); margin-bottom: .5rem; }
+    .audience-card p { font-size: 13px; line-height: 1.6; color: var(--texto-secundario); }
+
+    /* ── RESULTADOS ─────────────────────────────────────────────── */
+    .section-results { background: var(--primaria-escuro); }
+    .section-results h2 { color: #fff; }
+    .section-results .section-subtitle { color: rgba(255,255,255,.6); }
+
+    .results-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .result-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px; padding: 2rem;
+      text-align: center;
+      transition: background .25s;
+    }
+    .result-card:hover { background: rgba(255,255,255,.1); }
+    .result-value {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 3rem; font-weight: 700; color: var(--primaria-claro); line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .result-label { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,.65); }
+
+    /* ── DIFERENCIAIS ───────────────────────────────────────────── */
+    .section-diff { background: var(--bg-band); }
+    .diff-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem; margin-top: 3rem;
+    }
+    .diff-card.span2 { grid-column: span 2; }
+    .diff-card {
+      background: var(--card-bg); border: 1px solid var(--borda-suave);
+      border-radius: 18px; padding: 1.8rem;
+      box-shadow: var(--sombra-card);
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .diff-card:hover {
+      transform: translateY(-4px); box-shadow: 0 22px 55px rgba(15,23,42,.1);
+    }
+    .diff-num {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2rem; font-weight: 700; color: var(--primaria-claro);
+      line-height: 1; flex-shrink: 0; min-width: 2rem;
+    }
+    .diff-card h4 { font-size: 1rem; color: var(--texto-principal); margin-bottom: .35rem; }
+    .diff-card p { font-size: 13px; line-height: 1.6; color: var(--texto-secundario); }
+
+    /* ── METODOLOGIA ────────────────────────────────────────────── */
+    .section-methodology { background: var(--bg-page); }
+    .methodology-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; margin-top: 3rem;
+    }
+    .method-text h2 { text-align: left; font-size: clamp(2rem, 4vw, 3rem); }
+    .method-text p { font-size: 15px; line-height: 1.8; color: var(--texto-secundario); margin-top: 1rem; }
+    .method-badges {
+      display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.8rem;
+    }
+    .method-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-band); border: 1px solid var(--borda-suave);
+      color: var(--texto-principal);
+      font-size: 13px; font-weight: 500;
+      padding: .5rem 1rem; border-radius: 999px;
+    }
+    .method-badge i { color: var(--primaria); }
+
+    /* card de credenciais */
+    .method-cred-card {
+      background: var(--bg-band);
+      border: 1px solid var(--borda-suave);
+      border-radius: 20px; padding: 2.2rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .cred-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--card-bg); border: 1px solid var(--borda-suave);
+      border-radius: 14px;
+      box-shadow: var(--sombra-card);
+    }
+    .cred-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      border-radius: 10px; background: var(--primaria-escuro);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--primaria-claro);
+    }
+    .cred-text strong { display: block; font-size: 13px; color: var(--texto-principal); }
+    .cred-text span { font-size: 12px; color: var(--texto-secundario); }
+
+    /* ── CTA ────────────────────────────────────────────────────── */
+    .section-cta {
+      background: var(--primaria); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .section-cta::before {
+      content: 'LIDERANÇA';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(5rem, 16vw, 16rem); font-weight: 800;
+      color: rgba(255,255,255,.05); white-space: nowrap; pointer-events: none;
+    }
+    .section-cta h2 { position: relative; color: #fff; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: .8rem; }
+    .section-cta p { position: relative; font-size: 16px; color: rgba(255,255,255,.75); margin-bottom: 2rem; }
+    .btn-cta {
+      position: relative; display: inline-flex; align-items: center; gap: 10px;
+      background: var(--primaria-escuro); color: #fff;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      padding: 13px 32px; border-radius: 999px; text-decoration: none;
+      transition: background .25s, transform .2s;
+      box-shadow: 0 8px 24px rgba(15,23,10,.25);
+    }
+    .btn-cta:hover { background: #111; transform: translateY(-2px); }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--primaria-escuro); color: rgba(255,255,255,.45);
+      text-align: center; padding: 1.8rem; font-size: .82rem;
+    }
+    footer a { color: var(--primaria-claro); text-decoration: none; }
+
+    /* ── REVEAL ─────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.active { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-d4 { transition-delay: .4s; }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-left.active { opacity: 1; transform: none; }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-right.active { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVO ─────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      #navbar { padding: 0 24px; }
+      .pg-hero-inner { padding: 4rem 24px; }
+      .hero-inline-stats { gap: 1.5rem; }
+      .hero-inline-divider { display: none; }
+      .context-grid, .what-grid, .methodology-split { grid-template-columns: 1fr; gap: 3rem; }
+      .process-steps::before { display: none; }
+      .diff-grid { grid-template-columns: 1fr 1fr; }
+      .diff-card.span2 { grid-column: span 2; }
+      .section { padding: 60px 24px; }
+    }
+    @media (max-width: 560px) {
+      .diff-grid { grid-template-columns: 1fr; }
+      .diff-card.span2 { grid-column: span 1; }
+      .hero-inline-stats {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        }       
+      .hero-inline-divider { display: none; }
+    }         
+    
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="logo"><img src="./imagens/logo.png" alt="GaiaColibri"></div>
+  <a href="index.html" class="nav-back"><i class="bi bi-arrow-left"></i> Voltar ao site</a>
+</nav>
+
+<!-- HERO -->
+<section class="pg-hero">
+  <div class="pg-hero-bg"></div>
+  <div class="pg-hero-inner">
+
+    <div>
+      <div class="hero-kicker">
+        <i class="bi bi-diagram-3-fill"></i>
+        Metodologia Proprietária — Gaia Colibri
+      </div>
+      <h1>Quem realmente<em>lidera sua equipe?</em></h1>
+      <p class="hero-subtitle">
+        Nas organizações, quem move as pessoas raramente é quem está no organograma. O Mapeamento de Líderes identifica os influenciadores reais da sua equipe e transforma esse potencial em alta performance sustentável.
+      </p>
+      <div class="hero-actions">
+        <a href="index.html#contact" class="hero-cta-main">
+          <span>Agendar um diagnóstico</span><span>→</span>
+        </a>
+        <a href="#como-funciona" class="hero-cta-link"><strong>Como funciona</strong></a>
+      </div>
+      <div class="hero-inline-stats">
+        <div class="hero-inline-stat">
+          <div class="hero-inline-val">−30%</div>
+          <div class="hero-inline-label">Redução de incidentes</div>
+        </div>
+        <div class="hero-inline-divider"></div>
+        <div class="hero-inline-stat">
+          <div class="hero-inline-val">+25%</div>
+          <div class="hero-inline-label">Aumento de engajamento</div>
+        </div>
+        <div class="hero-inline-divider"></div>
+        <div class="hero-inline-stat">
+          <div class="hero-inline-val">20+</div>
+          <div class="hero-inline-label">Anos de metodologia</div>
+        </div>
+        <div class="hero-inline-divider"></div>
+        <div class="hero-inline-stat">
+          <div class="hero-inline-val">100%</div>
+          <div class="hero-inline-label">Customizado</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTEXTO DO PROBLEMA -->
+<section class="section section-context">
+  <div class="section-inner">
+    <div class="context-grid">
+      <div class="context-left">
+        <span class="eyebrow reveal">O problema</span>
+        <h2 class="reveal">O líder do papel<br>nem sempre é<br>o líder real</h2>
+        <p class="reveal reveal-d1">
+          Na maioria das empresas, quem realmente influencia o comportamento das equipes são pessoas que não aparecem no organograma. Ignorar esse fenômeno é a principal razão pela qual treinamentos não geram mudança.
+        </p>
+      </div>
+      <ul class="pain-list">
+        <li class="reveal reveal-d1">
+          <div class="pain-icon"><i class="bi bi-exclamation-circle"></i></div>
+          "Tenho líderes no papel, mas quem realmente influencia a equipe são outras pessoas."
+        </li>
+        <li class="reveal reveal-d2">
+          <div class="pain-icon"><i class="bi bi-cash-coin"></i></div>
+          "Investi em treinamentos e não vi mudança. O problema está na liderança, mas não sei onde exatamente."
+        </li>
+        <li class="reveal reveal-d3">
+          <div class="pain-icon"><i class="bi bi-emoji-frown"></i></div>
+          "Minha equipe não engaja — não entendo por quê."
+        </li>
+        <li class="reveal reveal-d4">
+          <div class="pain-icon"><i class="bi bi-shield-exclamation"></i></div>
+          "Preciso adequar a cultura à NR-1, mas não sei por onde começar com as lideranças."
+        </li>
+        <li class="reveal" style="transition-delay:.5s">
+          <div class="pain-icon"><i class="bi bi-fire"></i></div>
+          "Temos conflitos crônicos e não conseguimos identificar a raiz."
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE É -->
+<section class="section section-what">
+  <div class="section-inner">
+    <div class="what-grid">
+      <div class="what-visual reveal reveal-left">
+        <div class="what-visual-inner">
+          <i class="bi bi-diagram-3-fill what-visual-icon"></i>
+          <span class="what-visual-label">Mapa de lideranças</span>
+        </div>
+      </div>
+      <div class="what-text">
+        <span class="what-tag reveal"><i class="bi bi-patch-check-fill"></i> Metodologia Proprietária</span>
+        <span class="eyebrow reveal">O serviço</span>
+        <h2 class="reveal">O que é o<br>Mapeamento de Líderes</h2>
+        <p class="reveal reveal-d1">
+          O Mapeamento de Líderes é um diagnóstico organizacional que vai além do organograma. Combinando análise comportamental e metodologia estruturada, identificamos quem são os líderes formais e informais da sua empresa.
+        </p>
+        <p class="reveal reveal-d2">
+          Metodologia criada e desenvolvida pela Dra. Sonia Cerqueira (Ph.D, PMP): une o rigor técnico da engenharia com a profundidade humana necessária para transformar culturas organizacionais.
+        </p>
+        <p class="reveal reveal-d3">
+          Não é um diagnóstico genérico de prateleira — é análise real com entrega customizada, construída a partir da realidade da sua organização.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="como-funciona" class="section section-process">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center">Metodologia</span>
+    <h2 class="reveal">Como funciona</h2>
+    <p class="section-subtitle reveal">Um processo estruturado que combina análise organizacional com desenvolvimento humano.</p>
+    <div class="process-steps">
+      <div class="step reveal reveal-d1">
+        <div class="step-num">01</div>
+        <h4>Diagnóstico</h4>
+        <p>Análise da estrutura formal e informal de influência na equipe, identificando dinâmicas reais de poder.</p>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="step-num">02</div>
+        <h4>Mapeamento</h4>
+        <p>Identificação dos influenciadores "invisíveis" — líderes não reconhecidos pelo organograma.</p>
+      </div>
+      <div class="step reveal reveal-d3">
+        <div class="step-num">03</div>
+        <h4>Avaliação</h4>
+        <p>Avaliação de competências: técnicas, relacionais e comportamentais de cada liderança mapeada.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.4s">
+        <div class="step-num">04</div>
+        <h4>Plano de ação</h4>
+        <p>Criação de plano individualizado de desenvolvimento para cada líder identificado no processo.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.5s">
+        <div class="step-num">05</div>
+        <h4>Acompanhamento</h4>
+        <p>Monitoramento da evolução com indicadores de engajamento e performance ao longo do tempo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTREGÁVEIS -->
+<section class="section section-deliverables">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center">O que você recebe</span>
+    <h2 class="reveal">Entregáveis concretos</h2>
+    <p class="section-subtitle reveal">Ao final do processo, sua organização recebe documentos estratégicos e acionáveis.</p>
+    <div class="deliverables-grid">
+      <div class="deliverable-card reveal reveal-d1">
+        <div class="deliverable-icon"><i class="bi bi-diagram-3-fill"></i></div>
+        <h4>Mapa Visual de Lideranças</h4>
+        <p>Representação visual completa das lideranças formais e informais da sua organização.</p>
+      </div>
+      <div class="deliverable-card reveal reveal-d2">
+        <div class="deliverable-icon"><i class="bi bi-bar-chart-fill"></i></div>
+        <h4>Relatório de Competências</h4>
+        <p>Relatório detalhado com gaps de competência identificados por liderança mapeada.</p>
+      </div>
+      <div class="deliverable-card reveal reveal-d3">
+        <div class="deliverable-icon"><i class="bi bi-person-lines-fill"></i></div>
+        <h4>Plano de Desenvolvimento</h4>
+        <p>Plano de desenvolvimento personalizado para cada líder, com objetivos e indicadores.</p>
+      </div>
+      <div class="deliverable-card reveal" style="transition-delay:.4s">
+        <div class="deliverable-icon"><i class="bi bi-building-check"></i></div>
+        <h4>Recomendações Estratégicas</h4>
+        <p>Recomendações para o RH/DHO sobre estruturação da equipe de liderança.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="section section-audience">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center">Público-alvo</span>
+    <h2 class="reveal">Para quem é este serviço</h2>
+    <p class="section-subtitle reveal">Desenhado para decisores que precisam transformar liderança em resultado.</p>
+    <div class="audience-grid">
+      <div class="audience-card reveal reveal-d1">
+        <h4><i class="bi bi-gear-fill" style="color:var(--primaria);margin-right:.4rem"></i>Diretores Industriais</h4>
+        <p>Indústria, Mineração, Petroquímica e Logística. Ambientes com exigência de performance e conformidade NR-1.</p>
+      </div>
+      <div class="audience-card reveal reveal-d2">
+        <h4><i class="bi bi-people-fill" style="color:var(--primaria);margin-right:.4rem"></i>Gerentes de RH / DHO</h4>
+        <p>Empresas com histórico de conflitos, baixo engajamento ou necessidade de reestruturação cultural.</p>
+      </div>
+      <div class="audience-card reveal reveal-d3">
+        <h4><i class="bi bi-shield-check" style="color:var(--primaria);margin-right:.4rem"></i>Coordenadores de Segurança</h4>
+        <p>Ambientes com risco operacional e exigência de conformidade comportamental e normativa.</p>
+      </div>
+      <div class="audience-card reveal" style="transition-delay:.4s">
+        <h4><i class="bi bi-graph-up-arrow" style="color:var(--primaria);margin-right:.4rem"></i>C-Level e Alta Gestão</h4>
+        <p>Empresas em expansão que precisam escalar cultura de liderança e garantir resultados sustentáveis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="section section-diff">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center">Diferenciais</span>
+    <h2 class="reveal">Por que é único no mercado</h2>
+    <p class="section-subtitle reveal">A combinação que nenhum outro consultor de RH oferece.</p>
+    <div class="diff-grid">
+      <div class="diff-card reveal reveal-d1">
+        <span class="diff-num">01</span>
+        <div><h4>Rigor técnico + profundidade humana</h4><p>União de Ph.D em Engenharia e PMP com desenvolvimento humano. Nenhum concorrente oferece essa combinação.</p></div>
+      </div>
+      <div class="diff-card reveal reveal-d2">
+        <span class="diff-num">02</span>
+        <div><h4>Fala a língua da operação</h4><p>A Dra. Sonia entende o cotidiano industrial e traduz isso para a estratégia de RH com precisão e autoridade.</p></div>
+      </div>
+      <div class="diff-card reveal reveal-d3">
+        <span class="diff-num">03</span>
+        <div><h4>Diagnóstico real, não genérico</h4><p>Cada entrega é construída a partir da sua organização. Sem frameworks de prateleira ou relatórios padronizados.</p></div>
+      </div>
+      <div class="diff-card reveal" style="transition-delay:.4s">
+        <span class="diff-num">04</span>
+        <div><h4>Foco nos líderes invisíveis</h4><p>O ativo mais ignorado e mais influente de qualquer organização. Identificamos quem os outros ignoram.</p></div>
+      </div>
+      <div class="diff-card span2 reveal" style="transition-delay:.5s">
+        <span class="diff-num">05</span>
+        <div><h4>Entrega tangível e acionável</h4><p>Relatório, mapa de lideranças e plano de ação. Sem achismos, sem apresentações genéricas — apenas o que realmente serve para tomar decisões.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGIA / AUTORIDADE -->
+<section class="section section-methodology">
+  <div class="section-inner">
+    <div class="methodology-split">
+      <div class="method-text">
+        <span class="eyebrow reveal">Sobre a metodologia</span>
+        <h2 class="reveal">Criada por quem<br>viveu a operação</h2>
+        <p class="reveal reveal-d1">
+          A metodologia do Mapeamento de Líderes foi desenvolvida pela Dra. Sonia Cerqueira ao longo de mais de 20 anos de atuação direta em indústrias, mineradoras, empresas de logística e varejo.
+        </p>
+        <p class="reveal reveal-d2">
+          Sua formação singular combina o rigor metodológico de um Ph.D em Engenharia pela Unicamp com a certificação PMP e a profundidade do desenvolvimento humano — uma combinação que não existe em nenhum outro consultor do mercado.
+        </p>
+        <div class="method-badges reveal reveal-d3">
+          <span class="method-badge"><i class="bi bi-mortarboard-fill"></i> Ph.D — Unicamp</span>
+          <span class="method-badge"><i class="bi bi-award-fill"></i> PMP Certificada</span>
+          <span class="method-badge"><i class="bi bi-briefcase-fill"></i> 20+ anos de experiência</span>
+          <span class="method-badge"><i class="bi bi-building"></i> Indústria & Mineração</span>
+        </div>
+      </div>
+      <div class="method-cred-card reveal reveal-right">
+        <div class="cred-row">
+          <div class="cred-icon"><i class="bi bi-mortarboard-fill"></i></div>
+          <div class="cred-text">
+            <strong>Ph.D em Engenharia</strong>
+            <span>Universidade Estadual de Campinas — Unicamp</span>
+          </div>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon"><i class="bi bi-award-fill"></i></div>
+          <div class="cred-text">
+            <strong>PMP — Project Management Professional</strong>
+            <span>Certificação internacional em gestão de projetos</span>
+          </div>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon"><i class="bi bi-briefcase-fill"></i></div>
+          <div class="cred-text">
+            <strong>20+ anos de experiência prática</strong>
+            <span>Indústria, mineração, petroquímica, logística e varejo</span>
+          </div>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon"><i class="bi bi-people-fill"></i></div>
+          <div class="cred-text">
+            <strong>Especialista em líderes informais</strong>
+            <span>O ativo mais ignorado e mais influente das organizações</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-cta">
+  <h2 class="reveal">Entenda quem<br>lidera sua equipe</h2>
+  <p class="reveal reveal-d1">Agende um diagnóstico e receba uma proposta personalizada para a sua organização.</p>
+  <a href="index.html#contact" class="btn-cta reveal reveal-d2">
+    <span>Agendar diagnóstico</span><span>→</span>
+  </a>
+</section>
+
+<footer>
+  <p>© 2025 GaiaColibri Consultoria — <a href="index.html">Voltar ao site</a> · <a href="mailto:comercial@gaiacolibritreinamentos.com.br">comercial@gaiacolibritreinamentos.com.br</a> · (11) 93364-6591</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('navbar-scrolled', window.scrollY > 40);
+  });
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+  }, { threshold: .1 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
