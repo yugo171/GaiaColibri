@@ -22,7 +22,7 @@
 <body> 
     <nav id="navbar">
         <div class="logo">
-            <img src="./imagens/logo.png" alt="GaiaColibris Logo"> <!-- Insira o caminho correto para o logo -->
+            <img src="./imagens/logo.png" alt="GaiaColibris Logo"> 
         </div>
         <div class="link-section">
             <ul>
@@ -36,50 +36,63 @@
             </ul>
         </div>
     </nav>
-        <header id="home">              
-            <div class="bg-carousel" aria-hidden="true">
-                <div class="bg-carousel-overlay"></div>
-            </div>
-            
-            <div class="hero reveal-right "> <!-- adicionar animação reveal-right -->
-                <div class="hero-text">
-                    <p class="hero-kicker">Consultoria em Desenvolvimento Humano & Liderança</p>
-                    <h1>Desenvolvemos líderes e equipes para resultados sustentáveis.</h1>
-                    <p class="hero-subtitle">
-                        Apoiamos empresas em processos de transformação cultural, liderança e engajamento,
-                        com programas sob medida para contextos complexos e globais.
-                    </p>
-    
-                    <div class="hero-actions">
-                        <a href="#contact" class="hero-cta-main">
-                            <span>Falar com a Gaia Colibri</span>
-                            <span class="hero-cta-arrow">→</span>
-                        </a>
+      <header id="home">              
+          <div class="bg-carousel" aria-hidden="true">
+            <div class="bg-carousel-overlay"></div>
+          </div>
 
-                        <a href="#projects" class="hero-cta-link">
-                           <strong>Conhecer soluções</strong>
-                        </a>
-                    </div>
-                </div>
-    
-                <!-- PLACEHOLDER DO VÍDEO (depois troca por iframe) -->
-                <button class="hero-video-card" type="button">
-                    <div class="hero-video-thumb">
-                        <!-- você pode colocar aqui uma imagem estática -->
-                        <!-- <img src="./imagens/hero-video.jpg" alt="Apresentação Gaia Colibri"> -->
-                    </div>
-                    <div class="hero-video-info">
-                        <span class="hero-video-label">Vídeo institucional</span>
-                        <strong>Em breve: apresentação da Gaia Colibri</strong>
-                        <span class="hero-video-hint">Clique para assistir assim que o vídeo estiver disponível</span>
-                    </div>
-                    <div class="hero-video-play">
-                        <span>▶</span>
-                    </div>
-                </button>
+          <div class="hero-line" aria-hidden="true"></div>
+
+          <div class="hero reveal-up">
+            <div class="hero-text">
+
+              <div class="hero-kicker-wrap">
+                <span class="hero-kicker-dot"></span>
+                <p class="hero-kicker">Consultoria em Desenvolvimento Humano &amp; Liderança</p>
+              </div>
+
+              <h1>Desenvolvemos líderes<br><em>para resultados sustentáveis.</em></h1>
+
+              <p class="hero-subtitle">
+                Apoiamos empresas em processos de transformação cultural, liderança e engajamento,
+                com programas sob medida para contextos complexos e globais.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#contact" class="hero-cta-main">
+                  <span>Falar com a Gaia Colibri</span>
+                  <span class="hero-cta-arrow">→</span>
+                </a>
+                <a href="#projects" class="hero-cta-link">
+                  <strong>Conhecer soluções</strong>
+                </a>
+              </div>
+
+              <div class="hero-trust">
+                  <div class="hero-trust-item">
+                    <strong>+200</strong>
+                    <span>empresas atendidas</span>
+                  </div>
+                  <div class="hero-trust-div"></div>
+                  <div class="hero-trust-item">
+                    <strong>20+</strong>
+                    <span>anos de experiência</span>
+                  </div>
+                  <div class="hero-trust-div"></div>
+                  <div class="hero-trust-item">
+                    <strong>100%</strong>
+                    <span>programas customizados</span>
+                  </div>
+              </div>
+
             </div>
-            </div>
-        </header>
+          </div>
+
+          <a href="#about" class="hero-scroll" aria-label="Role para baixo">
+            <span class="hero-scroll-line"></span>
+            <span class="hero-scroll-label">scroll</span>
+          </a>
+    </header>
         <!--Clientes-->
         
         <section id="about" class="section section-about">
@@ -287,26 +300,36 @@
     </section>
     <section id="clients" class="section section-clients">
         <div class="clients-band">
-            <div class="section-inner company-logos">
-                <h2>Conheça algumas empresas que confiam na Gaia Colibri</h2>
+          <h2>Conheça algumas empresas que confiam na Gaia Colibri</h2>
                 <p class="section-subtitle clientes">
                    Empresas que confiam em nós para transformar suas lideranças e culturas organizacionais.
                 </p>
-
-            
-                <div class="clients-track" id="clients-track">
-                    <div class="client-logo"><img src="./imagens/cliente1.png" alt="Cliente 1"></div>
-                    <div class="client-logo"><img src="./imagens/cliente2.png" alt="Cliente 2"></div>
-                    <div class="client-logo"><img src="./imagens/cliente3.png" alt="Cliente 3"></div>
-                    <div class="client-logo"><img src="./imagens/cliente4.png" alt="Cliente 4"></div>
-                    <div class="client-logo"><img src="./imagens/cliente5.png" alt="Cliente 5"></div>
-                    <div class="client-logo"><img src="./imagens/cliente6.png" alt="Cliente 6"></div>
-                    <div class="client-logo"><img src="./imagens/cliente7.png" alt="Cliente 7"></div>
-                    <div class="client-logo"><img src="./imagens/cliente8.png" alt="Cliente 8"></div>
-                    <div class="client-logo"><img src="./imagens/cliente9.png" alt="Cliente 9"></div>
-                </div>
+          <div class="clients-track-wrapper">
+            <div class="clients-track" id="clients-track">
+              <!-- originais -->
+              <div class="client-logo"><img src="./imagens/cliente1.png" alt="Arcor"></div>
+              <div class="client-logo"><img src="./imagens/cliente2.png" alt="3M"></div>
+              <div class="client-logo"><img src="./imagens/cliente3.png" alt="Whirlpool"></div>
+              <div class="client-logo"><img src="./imagens/cliente4.png" alt="Gestamp"></div>
+              <div class="client-logo"><img src="./imagens/cliente5.png" alt="AMG Brasil"></div>
+              <div class="client-logo"><img src="./imagens/cliente6.png" alt="Sonavox"></div>
+              <div class="client-logo"><img src="./imagens/cliente7.png" alt="Grupo Simec"></div>
+              <div class="client-logo"><img src="./imagens/cliente8.png" alt="Greenbrier Maxion"></div>
+              <div class="client-logo"><img src="./imagens/cliente9.png" alt="Credmaxion"></div>
+              <!-- duplicados para loop contínuo -->
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente1.png" alt=""></div>
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente2.png" alt=""></div>
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente3.png" alt=""></div>
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente4.png" alt=""></div>
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente5.png" alt=""></div>
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente6.png" alt=""></div>
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente7.png" alt=""></div>
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente8.png" alt=""></div>
+              <div class="client-logo" aria-hidden="true"><img src="./imagens/cliente9.png" alt=""></div>
             </div>
-        </div>
+          </div>
+      </div>
+
     </section>
     
           
